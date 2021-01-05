@@ -20,11 +20,9 @@
 UCLASS()
 class KNIGHT_API UTileRule : public UObject
 {
-	GENERATED_BODY()
+	GENERATED_UCLASS_BODY()
 
 public:
-	UTileRule(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer);
-
 	void AddTileByDir(int Tile, int Dir);
 
 	TSet<int> GetTilesByDir(int Dir);
@@ -32,7 +30,7 @@ public:
 	void Merge(UTileRule* OtherRule);
 
 private:
-	UTileDirects* Dirs;
+	class UTileDirects* Dirs;
 	TArray< TSet<int> > Tiles;
 	
 };

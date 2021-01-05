@@ -3,12 +3,15 @@
 
 #include "TileDirects.h"
 
-UTileDirects::UTileDirects(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer)
+UTileDirects::UTileDirects(const FObjectInitializer& ObjectInitializer)
+	: Super(ObjectInitializer)
 {
 	Dirs.Add(0, FIntPoint(1, 0));
 	Dirs.Add(1, FIntPoint(0, 1));
 	Dirs.Add(2, FIntPoint(-1, 0));
 	Dirs.Add(3, FIntPoint(0, -1));
+
+	return;
 }
 
 const TArray<int> UTileDirects::GetDirs()
@@ -59,6 +62,11 @@ int UTileDirects::Invert(int Dir)
 	}
 
 	return InvertDir;
+}
+
+bool UTileDirects::IsValid(int Dir)
+{
+	return Dirs.Contains(Dir);
 }
 
 FIntPoint UTileDirects::Invert(FIntPoint Coords)

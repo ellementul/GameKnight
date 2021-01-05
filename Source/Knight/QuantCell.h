@@ -26,8 +26,6 @@ class KNIGHT_API UQuantCell : public UObject
 	GENERATED_UCLASS_BODY()
 
 public:
-	UQuantCell(const FObjectInitializer& ObjectInitializer);
-
 	void SetupRules(TMap< int, UTileRule* > Rules);
 
 	void CalculRule();

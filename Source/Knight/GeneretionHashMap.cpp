@@ -3,8 +3,11 @@
 
 #include "GeneretionHashMap.h"
 
-UGeneretionHashMap::UGeneretionHashMap(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer)
+UGeneretionHashMap::UGeneretionHashMap(const FObjectInitializer& ObjectInitializer)
+	: Super(ObjectInitializer)
 {
+	Dirs = this->CreateDefaultSubobject<UTileDirects>("Dirs");
+	return;
 }
 
 TArrayInt3D UGeneretionHashMap::Generation(int cols, int rows, TArray <TArrayInt3D> Patterns)
@@ -18,11 +21,11 @@ TArrayInt3D UGeneretionHashMap::Generation(int cols, int rows, TArray <TArrayInt
 
 	for (auto& Colmn : Map)
 		for (auto& Cell : Colmn)
-			Cell.SetupRules(InitRules);
+			Cell->SetupRules(InitRules);
 
 	for (auto& Colmn : Map)
 		for (auto& Cell : Colmn)
-			Cell.SetupRandTile();
+			Cell->SetupRandTile();
 
 
 
@@ -33,7 +36,7 @@ TArrayInt3D UGeneretionHashMap::Generation(int cols, int rows, TArray <TArrayInt
 		TArray<int> Colmn;
 
 		for (auto& Cell : MColmn)
-			Colmn.Add(Cell.GetTile());
+			Colmn.Add(Cell->GetTile());
 
 		Layer.Add(Colmn);
 	}
@@ -67,14 +70,14 @@ bool UGeneretionHashMap::AddPattern(TArrayInt3D Pattern)
 
 			for (int y = 0; y < Colmn.Num(); y++) {
 
-				struct FTileRule NewRule = AddRule(FTileRule(), Layer, FIntPoint(x, y));
+				class UTileRule* NewRule = AddRule(Layer, FIntPoint(x, y));
 
 				int RuleIndex = Colmn[y];
 
 				if (InitRules.Contains(RuleIndex))
 				{
-					struct FTileRule OldRule = InitRules[RuleIndex];
-					NewRule = OldRule.Merge(NewRule);
+					class UTileRule* OldRule = InitRules[RuleIndex];
+					NewRule->Merge(OldRule);
 				}
 				
 				InitRules.Add(RuleIndex, NewRule);
@@ -87,34 +90,35 @@ bool UGeneretionHashMap::AddPattern(TArrayInt3D Pattern)
 	InitRules.GenerateKeyArray(tiles);
 	auto Rule = InitRules[tiles[1]];
 
-	UE_LOG(LogTemp, Log, TEXT("Rule number %d bottom: %d"), tiles[1], Rule.getTiles(1).Num());
+	UE_LOG(LogTemp, Log, TEXT("Rule number %d bottom: %d"), tiles[1], Rule->GetTilesByDir(1).Num());
 
 	return true;
 }
 
-struct FTileRule UGeneretionHashMap::AddRule(struct FTileRule Rule, TArray< TArray<int> > Layer, FIntPoint Coord)
+class UTileRule* UGeneretionHashMap::AddRule(TArray< TArray<int> > Layer, FIntPoint Coord)
 {
+	class UTileRule* NewRule = NewObject<UTileRule>(this);
 
-	for (struct FIntPoint Dir : Dirs.GetDirs()) {
+	for (auto& Dir : Dirs->GetDirs()) {
 
-		auto shiftCoord = Coord + Dir;
+		auto shiftCoord = Coord + Dirs->GetCoords(Dir);
 
 		int Tile;
 		if (GetTile(Layer, shiftCoord, Tile))
-			Rule.AddTileByDir(Tile, Dirs.GetDirect(Dir));
+			NewRule->AddTileByDir(Tile, Dir);
 	}
 
-	return Rule;
+	return NewRule;
 }
 
-bool UGeneretionHashMap::GetTile(TArray<TArray<int>> layer, FIntPoint coord, int& tile)
+bool UGeneretionHashMap::GetTile(TArray<TArray<int>> Layer, FIntPoint Coord, int& Tile)
 {
-	int x = coord.X;
-	int y = coord.Y;
+	int x = Coord.X;
+	int y = Coord.Y;
 
-	if (layer.IsValidIndex(x) && layer[x].IsValidIndex(y))
+	if (Layer.IsValidIndex(x) && Layer[x].IsValidIndex(y))
 	{
-		tile = layer[x][y];
+		Tile = Layer[x][y];
 		return true;
 	}
 

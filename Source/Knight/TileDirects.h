@@ -17,12 +17,9 @@
 UCLASS()
 class KNIGHT_API UTileDirects : public UObject
 {
-	GENERATED_BODY()
+	GENERATED_UCLASS_BODY()
 
 public:
-
-	UTileDirects(const FObjectInitializer& ObjectInitializer);
-
 	const TArray<int> GetDirs();
 
 	int GetDirByCoords(FIntPoint Coords);
@@ -32,6 +29,8 @@ public:
 	FIntPoint Invert(FIntPoint Coords);
 
 	int       Invert(int Dir);
+
+	bool      IsValid(int Dir);
 
 private:
 	TMap<int, FIntPoint> Dirs;

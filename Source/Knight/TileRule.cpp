@@ -3,12 +3,17 @@
 
 #include "TileRule.h"
 
-UTileRule::UTileRule(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer)
+UTileRule::UTileRule(const FObjectInitializer& ObjectInitializer)
+	: Super(ObjectInitializer)
 {
+	Dirs = this->CreateDefaultSubobject<UTileDirects>("Dirs");
+
 	for (auto& Dir : Dirs->GetDirs()) {
 		TSet<int> TileList;
 		Tiles.Add(TileList);
 	}
+
+	return;
 }
 
 void UTileRule::AddTileByDir(int Tile, int Dir)

@@ -4,7 +4,8 @@
 #include "QuantCell.h"
 
 
-UQuantCell::UQuantCell(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer)
+UQuantCell::UQuantCell(const FObjectInitializer& ObjectInitializer)
+	: Super(ObjectInitializer)
 {
 	/*struct FConstructorStatics
 	{
@@ -17,6 +18,8 @@ UQuantCell::UQuantCell(const FObjectInitializer& ObjectInitializer) : Super(Obje
 	*/
 
 	Tile = -1;
+
+	return;
 }
 
 void UQuantCell::SetupRules(TMap<int, UTileRule*> Rules)
@@ -25,25 +28,28 @@ void UQuantCell::SetupRules(TMap<int, UTileRule*> Rules)
 
 	TArray<int>  InitTiles;
 	InitRules.GenerateKeyArray(InitTiles);
-	Tiles = InitTiles;
+
+	Tiles.Empty();
+	for(auto& InitTile : InitTiles)
+		Tiles.Add(InitTile);
 }
 
 void UQuantCell::CalculRule()
 {
 
-	NewRule = NewObject<UTileRule>(this);
+	class UTileRule* NewRule = NewObject<UTileRule>(this);
 
 	// Перебрать возможные тайлы и объединить все правила тайлов в одно правило.
 	if (Tiles.Num() > 0)
-		for (auto& Tile : Tiles)
-			NewRule = NewRule->Merge(InitRules[Tile]);
+		for (auto& AvallibleTile : Tiles)
+			NewRule->Merge(InitRules[AvallibleTile]);
 
 	else
 	{
 		UE_LOG(LogTemp, Error, TEXT("UQuantCell::CalculRule: Tiles.Num() is Zero!!!"));
 
 		for (auto& InitRule : InitRules)
-			NewRule = NewRule->Merge(InitRule);
+			NewRule->Merge(InitRule.Value);
 	}
 
 	Rule = NewRule;
@@ -66,8 +72,10 @@ int UQuantCell::CalculTiles(TArray<UTileRule*> NeighborRules)
 
 		//Tiles = NeighborTiles;
 
-		if (Tiles.Num() == 1)
-			Tile = Tiles[0];
+		TArray<int> AllaivableTiles = Tiles.Array();
+
+		if (AllaivableTiles.Num() == 1)
+			Tile = AllaivableTiles[0];
 	}
 
 	return Tiles.Num();
@@ -80,12 +88,12 @@ bool UQuantCell::IsSetupTile()
 
 int UQuantCell::SetupRandTile()
 {
-	TSet <int> NewTiles;
+	TArray<int> AllaivableTiles = Tiles.Array();
 
-	if (Tiles.Num() > 0)
+	if (AllaivableTiles.Num() > 0)
 	{
-		int tileIndex = FMath::RandHelper(Tiles.Num());
-		Tile = Tiles[tileIndex];
+		int tileIndex = FMath::RandHelper(AllaivableTiles.Num());
+		Tile = AllaivableTiles[tileIndex];
 	}
 	else
 		UE_LOG(LogTemp, Error, TEXT("UQuantCell::SetupRandTile: Tiles.Num() is Zero!!!"));

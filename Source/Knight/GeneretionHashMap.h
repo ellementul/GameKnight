@@ -31,6 +31,7 @@ class UQuantCell;
 	≈сли по€вилась €чейка у которой не осталось не одного возможного тайла, то кидаем прудпреждение и назначаем индекс тайла в -1
 
 	TODO:
+	0. —оздаем карту квантовых €чеек и определ€ем какждую €чейку рандомно по пор€дку
 	1. —оздаем карту квантовых €чеек и определ€ем какждую €чейку рандомно по пор€дку с преварительным перерасчет дл€ нее возможных тайлов
 	2. ќпредел€ем некоторое количество рандомных €чеек заренее, проводим перерасчет всех €чеек по пор€дку, потом определ€ем остальные €чейки как в первом шаге.
 	3. «аполн€ем патернами одного уровн€ карту на пробу.
@@ -42,23 +43,21 @@ class KNIGHT_API UGeneretionHashMap : public UObject
 	GENERATED_UCLASS_BODY()
 
 public:
-	UGeneretionHashMap();
-
 	TArrayInt3D Generation(int cols, int rows, TArray <TArrayInt3D> Patterns);
 	
 
 protected:
-	TMap< int, struct FTileRule >   InitRules;
+	TMap< int, UTileRule* >   InitRules;
 	TArray< TArray<UQuantCell* > >  Map;
 
 	void CreateMap(int cols, int rows);
 
 	bool AddPattern(TArrayInt3D Pattern);
-	struct FTileRule AddRule(struct FTileRule Rule, TArray< TArray<int> > Layer, FIntPoint Coord);
+	class UTileRule* AddRule(TArray< TArray<int> > Layer, FIntPoint Coord);
 
 	bool GetTile(TArray< TArray<int> > layer, FIntPoint coord, int& tile);
 
-	struct FTileDirects Dirs;
+	class UTileDirects* Dirs;
 };
 
 
