@@ -28,6 +28,9 @@ public:
 	UPROPERTY(Category = Setup, EditAnywhere, BlueprintReadWrite)
 		TArray<UPaperTileMap*> TilePatterns;
 
+	UPROPERTY(Category = Setup, EditAnywhere, BlueprintReadWrite)
+		FPaperTileInfo ErrorTile;
+
 	UFUNCTION(BlueprintCallable, Category = "Sprite")
 		void Generation();
 

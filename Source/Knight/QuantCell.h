@@ -38,7 +38,7 @@ public:
 	int SetupRandTile();
 
 	int GetTile();
-	const UTileRule* GetRule();
+	class UTileRule* GetRule();
 
 private:
 	TMap< int, UTileRule* > InitRules;

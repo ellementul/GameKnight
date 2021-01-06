@@ -44,11 +44,17 @@ void UGenerationTileMapComponent::Generation()
 
 			for (int y = 0; y < Colmn.Num(); y++) {
 
-				// UE_LOG(LogTemp, Log, TEXT("x: %d, y: %d, cell: %d"), x, y, Layer[x][y]);
+				// 
 
-				FPaperTileInfo Tile = HashTiles->GetTile(Layer[x][y]);
+				int TileIndex = Layer[x][y];
+				FPaperTileInfo Tile = ErrorTile;
+
+				if (TileIndex > -1)
+					 Tile = HashTiles->GetTile(TileIndex);
+				else
+					UE_LOG(LogTemp, Error, TEXT("x: %d, y: %d, cell: %d"), x, y, Layer[x][y]);
+
 				SetTile(x, y, l, Tile);
-
 			}
 		}
 	}

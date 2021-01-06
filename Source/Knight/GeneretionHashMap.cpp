@@ -22,21 +22,32 @@ TArrayInt3D UGeneretionHashMap::Generation(int cols, int rows, TArray <TArrayInt
 	for (auto& Colmn : Map)
 		for (auto& Cell : Colmn)
 			Cell->SetupRules(InitRules);
+		
+	for (int X = 0; X < Map.Num(); X++)
+	{
+		auto Column = Map[X];
 
-	for (auto& Colmn : Map)
-		for (auto& Cell : Colmn)
+		for (int Y = 0; Y < Column.Num(); Y++)
+		{
+			auto Cell = Column[Y];
+			auto NeighborRules = GetNeighborRules(FIntPoint(X, Y));
+
+			Cell->CalculTiles(NeighborRules);
 			Cell->SetupRandTile();
+		}
+
+	}
 
 
 
 	TArray< TArray<int> > Layer;
 
-	for (auto& MColmn : Map)
+	for (int X = 0; X < Map.Num(); X++)
 	{
 		TArray<int> Colmn;
 
-		for (auto& Cell : MColmn)
-			Colmn.Add(Cell->GetTile());
+		for (int Y = 0; Y < Map[X].Num(); Y++)
+			Colmn.Add(Map[X][Y]->GetTile());
 
 		Layer.Add(Colmn);
 	}
@@ -111,6 +122,25 @@ class UTileRule* UGeneretionHashMap::AddRule(TArray< TArray<int> > Layer, FIntPo
 	return NewRule;
 }
 
+TArray<UTileRule*> UGeneretionHashMap::GetNeighborRules(FIntPoint Coord)
+{
+	TArray<UTileRule*> NeighborRules;
+
+	for (auto& Dir : Dirs->GetDirs()) {
+
+		auto shiftCoord = Coord + Dirs->GetCoords(Dir);
+
+		UQuantCell* Cell = GetCell(shiftCoord);
+
+		if (Cell != nullptr)
+			NeighborRules.Add(Cell->GetRule());
+		else
+			NeighborRules.Add(NewObject<UTileRule>(this));
+	}
+
+	return NeighborRules;
+}
+
 bool UGeneretionHashMap::GetTile(TArray<TArray<int>> Layer, FIntPoint Coord, int& Tile)
 {
 	int x = Coord.X;
@@ -123,6 +153,17 @@ bool UGeneretionHashMap::GetTile(TArray<TArray<int>> Layer, FIntPoint Coord, int
 	}
 
 	return false;
+}
+
+UQuantCell* UGeneretionHashMap::GetCell(FIntPoint Coord)
+{
+	int x = Coord.X;
+	int y = Coord.Y;
+
+	if (Map.IsValidIndex(x) && Map[x].IsValidIndex(y))
+		return Map[x][y];
+	else
+		return nullptr;
 }
 
 

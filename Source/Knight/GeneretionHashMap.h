@@ -55,7 +55,10 @@ protected:
 	bool AddPattern(TArrayInt3D Pattern);
 	class UTileRule* AddRule(TArray< TArray<int> > Layer, FIntPoint Coord);
 
-	bool GetTile(TArray< TArray<int> > layer, FIntPoint coord, int& tile);
+	TArray<UTileRule*> GetNeighborRules(FIntPoint Coord);
+
+	bool GetTile(TArray< TArray<int> > Layer, FIntPoint Coord, int& Tile);
+	class UQuantCell* GetCell(FIntPoint Coord);
 
 	class UTileDirects* Dirs;
 };

@@ -32,6 +32,8 @@ void UQuantCell::SetupRules(TMap<int, UTileRule*> Rules)
 	Tiles.Empty();
 	for(auto& InitTile : InitTiles)
 		Tiles.Add(InitTile);
+
+	CalculRule();
 }
 
 void UQuantCell::CalculRule()
@@ -40,7 +42,10 @@ void UQuantCell::CalculRule()
 	class UTileRule* NewRule = NewObject<UTileRule>(this);
 
 	// Перебрать возможные тайлы и объединить все правила тайлов в одно правило.
-	if (Tiles.Num() > 0)
+	if (IsSetupTile())
+		NewRule->Merge(InitRules[Tile]);
+
+	else if (Tiles.Num() > 0)
 		for (auto& AvallibleTile : Tiles)
 			NewRule->Merge(InitRules[AvallibleTile]);
 
@@ -59,24 +64,33 @@ int UQuantCell::CalculTiles(TArray<UTileRule*> NeighborRules)
 {
 	if (!IsSetupTile())
 	{
-		TSet <int> NeighborTiles;
 
-		////Достаем из правил соседских ячеек списки тайлов и объединям их.
-		//for (int32 Index = 0; Index != NeighborRules.Num(); ++Index)
-		//{
-		//	int Dir = Dirs->Invert(Index);
-		//	TSet <int> NeighborTiles = NeighborRules->GetTilesByDir(Dir);
+		//Достаем из правил соседских ячеек списки тайлов и проверяем по ним текущие тайлы, отмечая те что надо удалить.
+		TSet<int> RemoveTiles;
 
-		//	//Отбрасываем те возможные тайлы которых нет в этом списке тайлов.
-		//}
+		for (int32 Index = 0; Index != NeighborRules.Num(); ++Index)
+		{
+			int Dir = Dirs->Invert(Index);
+			TSet <int> NeighborTiles = NeighborRules[Index]->GetTilesByDir(Dir);
 
-		//Tiles = NeighborTiles;
+			if(NeighborTiles.Num() > 0)
+				for(auto& AvalibleTile : Tiles)
+				{
+					if (!NeighborTiles.Contains(AvalibleTile))
+						RemoveTiles.Add(AvalibleTile);
+				}
+		}
+
+		for (auto& RemoveTile : RemoveTiles)
+			Tiles.Remove(RemoveTile);
 
 		TArray<int> AllaivableTiles = Tiles.Array();
 
 		if (AllaivableTiles.Num() == 1)
 			Tile = AllaivableTiles[0];
 	}
+
+	CalculRule();
 
 	return Tiles.Num();
 }
@@ -98,6 +112,8 @@ int UQuantCell::SetupRandTile()
 	else
 		UE_LOG(LogTemp, Error, TEXT("UQuantCell::SetupRandTile: Tiles.Num() is Zero!!!"));
 
+	CalculRule();
+
 	return Tile;
 }
 
@@ -105,7 +121,7 @@ int UQuantCell::GetTile()
 {
 	return Tile;
 }
-const UTileRule* UQuantCell::GetRule()
+class UTileRule* UQuantCell::GetRule()
 {
 	return Rule;
 }
