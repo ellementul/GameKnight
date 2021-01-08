@@ -21,6 +21,16 @@ const TArray<int> UTileDirects::GetDirs()
 	return IntDirs;
 }
 
+const TArray<int> UTileDirects::GetDownToUp()
+{
+	TArray<int>  IntDirs;
+	IntDirs.Add(3);
+	IntDirs.Add(0);
+	IntDirs.Add(1);
+	IntDirs.Add(2);
+	return IntDirs;
+}
+
 int UTileDirects::GetDirByCoords(FIntPoint Coords)
 {
 	const int* KeyPtr = Dirs.FindKey(Coords);

@@ -22,6 +22,8 @@ class KNIGHT_API UTileDirects : public UObject
 public:
 	const TArray<int> GetDirs();
 
+	const TArray<int> GetDownToUp();
+
 	int GetDirByCoords(FIntPoint Coords);
 
 	FIntPoint GetCoords(int Dir);

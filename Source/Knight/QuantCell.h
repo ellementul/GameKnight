@@ -30,7 +30,7 @@ public:
 
 	void CalculRule();
 
-	int CalculTiles(TArray< UTileRule* > NeighborRules);
+	void CalculTiles(TArray< UTileRule* > NeighborRules);
 
 	
 	bool IsSetupTile();
@@ -38,6 +38,7 @@ public:
 	int SetupRandTile();
 
 	int GetTile();
+	int GetEtrop();
 	void SetTile(int NewTile);
 	class UTileRule* GetRule();
 

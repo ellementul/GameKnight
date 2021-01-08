@@ -42,8 +42,6 @@ void UGenerationTileMapComponent::Generation()
 
 			for (int y = 0; y < Colmn.Num(); y++) {
 
-				// 
-
 				int TileIndex = Layer[x][y];
 				FPaperTileInfo Tile = ErrorTile;
 

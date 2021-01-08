@@ -60,7 +60,7 @@ void UQuantCell::CalculRule()
 	Rule = NewRule;
 }
 
-int UQuantCell::CalculTiles(TArray<UTileRule*> NeighborRules)
+void UQuantCell::CalculTiles(TArray<UTileRule*> NeighborRules)
 {
 	if (!IsSetupTile())
 	{
@@ -91,8 +91,6 @@ int UQuantCell::CalculTiles(TArray<UTileRule*> NeighborRules)
 	}
 
 	CalculRule();
-
-	return Tiles.Num();
 }
 
 bool UQuantCell::IsSetupTile()
@@ -123,6 +121,14 @@ int UQuantCell::SetupRandTile()
 int UQuantCell::GetTile()
 {
 	return Tile;
+}
+
+int UQuantCell::GetEtrop()
+{
+	if (!IsSetupTile())
+		return Tiles.Num() - 1;
+	else
+		return 0;
 }
 
 void UQuantCell::SetTile(int NewTile)
