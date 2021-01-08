@@ -32,10 +32,12 @@ class UQuantCell;
 
 	TODO:
 	0. —оздаем карту квантовых €чеек и определ€ем какждую €чейку рандомно по пор€дку
-	1. —оздаем карту квантовых €чеек и определ€ем какждую €чейку рандомно по пор€дку с преварительным перерасчет дл€ нее возможных тайлов
-	2. ќпредел€ем некоторое количество рандомных €чеек заренее, проводим перерасчет всех €чеек по пор€дку, потом определ€ем остальные €чейки как в первом шаге.
-	3. «аполн€ем патернами одного уровн€ карту на пробу.
-	4. «аполн€ем карту паттернами всех уровней.
+	1. —оздаем карту квантовых €чеек, и заполн€ем ее в соотвствии с правилами соседних €чееек, рандомно по пор€дку.
+	2. —оздаем карту квантовых €чеек из уже существующей карты, и заполн€ем ее по пор€дку.
+	3. —оздаем карту квантовых €чеек из уже существующей карты, сканируем ее на уровень этропии создова€ список тайлов первого уровн€ этропии, и заполн€ем ее по пор€дку тайлов первого уровн€ этропии.
+	4. ѕосле заполнени€ каждого тайла сканируем его соседей на измениние этропии.
+	4.1. —канируем только соседей текущего тайла
+	4.2. —канируем рекурсивно всех соседей соседей что чь€ этропи€ была изменена.
  */
 UCLASS()
 class KNIGHT_API UGeneretionHashMap : public UObject
@@ -43,14 +45,14 @@ class KNIGHT_API UGeneretionHashMap : public UObject
 	GENERATED_UCLASS_BODY()
 
 public:
-	TArrayInt3D Generation(int cols, int rows, TArray <TArrayInt3D> Patterns);
+	TArrayInt3D Generation(TArrayInt3D BeginMap, TArray <TArrayInt3D> Patterns);
 	
 
 protected:
 	TMap< int, UTileRule* >   InitRules;
 	TArray< TArray<UQuantCell* > >  Map;
 
-	void CreateMap(int cols, int rows);
+	void CreateMap(TArrayInt3D BeginMap);
 
 	bool AddPattern(TArrayInt3D Pattern);
 	class UTileRule* AddRule(TArray< TArray<int> > Layer, FIntPoint Coord);

@@ -104,13 +104,16 @@ int UQuantCell::SetupRandTile()
 {
 	TArray<int> AllaivableTiles = Tiles.Array();
 
-	if (AllaivableTiles.Num() > 0)
+	if (!IsSetupTile())
 	{
-		int tileIndex = FMath::RandHelper(AllaivableTiles.Num());
-		Tile = AllaivableTiles[tileIndex];
+		if (AllaivableTiles.Num() > 0)
+		{
+			int tileIndex = FMath::RandHelper(AllaivableTiles.Num());
+			Tile = AllaivableTiles[tileIndex];
+		}
+		else
+			UE_LOG(LogTemp, Error, TEXT("UQuantCell::SetupRandTile: Tiles.Num() is Zero!!!"));
 	}
-	else
-		UE_LOG(LogTemp, Error, TEXT("UQuantCell::SetupRandTile: Tiles.Num() is Zero!!!"));
 
 	CalculRule();
 
@@ -121,6 +124,12 @@ int UQuantCell::GetTile()
 {
 	return Tile;
 }
+
+void UQuantCell::SetTile(int NewTile)
+{
+	Tile = NewTile;
+}
+
 class UTileRule* UQuantCell::GetRule()
 {
 	return Rule;

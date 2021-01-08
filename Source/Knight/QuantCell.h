@@ -38,6 +38,7 @@ public:
 	int SetupRandTile();
 
 	int GetTile();
+	void SetTile(int NewTile);
 	class UTileRule* GetRule();
 
 private:

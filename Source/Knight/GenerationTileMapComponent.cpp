@@ -14,7 +14,10 @@ UGenerationTileMapComponent::UGenerationTileMapComponent(const FObjectInitialize
 void UGenerationTileMapComponent::Generation()
 {	
 	HashTiles = NewObject<UHashedTileSet>();
-	HashMap   = NewObject<UGeneretionHashMap>();
+	GenMap   = NewObject<UGeneretionHashMap>();
+
+	HashTiles->AddPattern(TileMap);
+	TArrayInt3D HashedMap = HashTiles->HashPattern(TileMap);
 
 	TArray<TArrayInt3D> HashedPatterns;
 	for (auto& Pattern : TilePatterns) {
@@ -26,18 +29,13 @@ void UGenerationTileMapComponent::Generation()
 	}
 
 	// UE_LOG(LogTemp, Log, TEXT("Tile number: %d"), HashTiles->GetMaxIndex());
-	int32 MapWidth;
-	int32 MapHeight;
-	int32 NumLayers;
-
-	GetMapSize(MapWidth,  MapHeight, NumLayers);
 
 	MakeTileMapEditable();
-	TArrayInt3D Map = HashMap->Generation(MapWidth, MapHeight, HashedPatterns);
-	// auto Map = HashedPattern;
 
-	for (int l = 0; l < Map.Num(); l++) {
-		auto Layer = Map[l];
+	HashedMap = GenMap->Generation(HashedMap, HashedPatterns);
+
+	for (int l = 0; l < HashedMap.Num(); l++) {
+		auto Layer = HashedMap[l];
 
 		for (int x = 0; x < Layer.Num(); x++) {
 			auto Colmn = Layer[x];

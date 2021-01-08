@@ -10,10 +10,10 @@ UGeneretionHashMap::UGeneretionHashMap(const FObjectInitializer& ObjectInitializ
 	return;
 }
 
-TArrayInt3D UGeneretionHashMap::Generation(int cols, int rows, TArray <TArrayInt3D> Patterns)
+TArrayInt3D UGeneretionHashMap::Generation(TArrayInt3D BeginMap, TArray <TArrayInt3D> Patterns)
 {
 	
-	CreateMap(cols, rows);
+	CreateMap(BeginMap);
 
 	for (auto& pattern : Patterns) {
 		AddPattern(pattern);
@@ -22,21 +22,26 @@ TArrayInt3D UGeneretionHashMap::Generation(int cols, int rows, TArray <TArrayInt
 	for (auto& Colmn : Map)
 		for (auto& Cell : Colmn)
 			Cell->SetupRules(InitRules);
-		
-	for (int X = 0; X < Map.Num(); X++)
-	{
-		auto Column = Map[X];
 
-		for (int Y = 0; Y < Column.Num(); Y++)
+	for (int Y = Map[0].Num() - 1; Y >= 0; Y--)
+		for (int X = 0; X < Map.Num(); X++)
 		{
-			auto Cell = Column[Y];
+			auto Cell = Map[X][Y];
+			auto NeighborRules = GetNeighborRules(FIntPoint(X, Y));
+
+			Cell->CalculTiles(NeighborRules);
+		}
+		
+	for (int Y = Map[0].Num() - 1; Y >= 0; Y--)
+		for (int X = 0; X < Map.Num(); X++)
+		{
+			auto Cell = Map[X][Y];
 			auto NeighborRules = GetNeighborRules(FIntPoint(X, Y));
 
 			Cell->CalculTiles(NeighborRules);
 			Cell->SetupRandTile();
 		}
 
-	}
 
 
 
@@ -58,13 +63,20 @@ TArrayInt3D UGeneretionHashMap::Generation(int cols, int rows, TArray <TArrayInt
 	return HMap;
 }
 
-void UGeneretionHashMap::CreateMap(int cols, int rows)
+void UGeneretionHashMap::CreateMap(TArrayInt3D BeginMap)
 {
-	for (int i = 0; i < cols; i++) {
+	TArray< TArray<int> >  FirstLayer = BeginMap[0];
+
+	for (int X = 0; X < FirstLayer.Num(); X++) {
 		TArray<UQuantCell*> Colmn;
 
-		for (int j = 0; j < rows; j++) {
-			Colmn.Add(NewObject<UQuantCell>(this));
+		for (int Y = 0; Y < FirstLayer[X].Num(); Y++) {
+			UQuantCell* Cell = NewObject<UQuantCell>(this);
+
+			if (FirstLayer[X][Y] != 0)
+				Cell->SetTile(FirstLayer[X][Y]);
+
+			Colmn.Add(Cell);
 		}
 
 		Map.Add(Colmn);

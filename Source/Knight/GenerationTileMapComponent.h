@@ -37,5 +37,5 @@ public:
 private:
 	class UHashedTileSet* HashTiles;
 
-	class UGeneretionHashMap* HashMap;
+	class UGeneretionHashMap* GenMap;
 };
