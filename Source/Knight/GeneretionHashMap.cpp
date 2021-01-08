@@ -88,6 +88,7 @@ TArrayInt3D UGeneretionHashMap::Generation(TArrayInt3D BeginMap, TArray <TArrayI
 	CreateMap(BeginMap);
 
 	//Добавляем паттерны и вычисляем по ним правила.
+	//AddPattern(BeginMap);
 	for (auto& pattern : Patterns) {
 		AddPattern(pattern);
 	}

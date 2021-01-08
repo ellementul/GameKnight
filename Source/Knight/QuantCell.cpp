@@ -42,13 +42,18 @@ void UQuantCell::CalculRule()
 	class UTileRule* NewRule = NewObject<UTileRule>(this);
 
 	// Перебрать возможные тайлы и объединить все правила тайлов в одно правило.
-	if (IsSetupTile())
-		NewRule->Merge(InitRules[Tile]);
-
+	if (IsSetupTile() && InitRules.Contains(Tile))
+	{
+		if(InitRules.Contains(Tile))
+			NewRule->Merge(InitRules[Tile]);
+		else
+		{
+			UE_LOG(LogTemp, Error, TEXT("UQuantCell::CalculRule: Tile is unknowed!!!"));
+		}
+	}
 	else if (Tiles.Num() > 0)
 		for (auto& AvallibleTile : Tiles)
 			NewRule->Merge(InitRules[AvallibleTile]);
-
 	else
 	{
 		UE_LOG(LogTemp, Error, TEXT("UQuantCell::CalculRule: Tiles.Num() is Zero!!!"));
