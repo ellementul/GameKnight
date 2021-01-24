@@ -34,6 +34,9 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Sprite")
 		void Generation();
 
+	UFUNCTION(BlueprintCallable, Category = "Sprite")
+		void Clear();
+
 private:
 	class UHashedTileSet* HashTiles;
 

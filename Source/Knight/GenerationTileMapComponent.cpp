@@ -57,3 +57,17 @@ void UGenerationTileMapComponent::Generation()
 
 	RebuildCollision();
 }
+
+void UGenerationTileMapComponent::Clear()
+{
+	for (int l = 0; l < TileMap->TileLayers.Num(); l++) {
+
+		for (int x = 0; x < TileMap->MapWidth; x++) {
+
+			for (int y = 0; y < TileMap->MapHeight; y++) {
+
+				SetTile(x, y, l, FPaperTileInfo());
+			}
+		}
+	}
+}

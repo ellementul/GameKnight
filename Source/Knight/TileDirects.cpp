@@ -24,10 +24,12 @@ const TArray<int> UTileDirects::GetDirs()
 const TArray<int> UTileDirects::GetDownToUp()
 {
 	TArray<int>  IntDirs;
+	
 	IntDirs.Add(3);
+	IntDirs.Add(2);
 	IntDirs.Add(0);
 	IntDirs.Add(1);
-	IntDirs.Add(2);
+	
 	return IntDirs;
 }
 

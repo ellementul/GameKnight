@@ -130,7 +130,7 @@ int UQuantCell::GetTile()
 
 int UQuantCell::GetEtrop()
 {
-	if (!IsSetupTile())
+	if (!IsSetupTile() && Tiles.Num() > 0)
 		return Tiles.Num() - 1;
 	else
 		return 0;
