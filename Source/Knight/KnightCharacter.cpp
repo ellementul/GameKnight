@@ -82,10 +82,12 @@ AKnightCharacter::AKnightCharacter()
 void AKnightCharacter::UpdateAnimation()
 {
 	const FVector PlayerVelocity = GetVelocity();
-	const float PlayerSpeedSqr = PlayerVelocity.SizeSquared();
+	const float PlayerWalkSpeed   = PlayerVelocity.GetAbs().X;
 
 	// Are we moving or standing still?
-	UPaperFlipbook* DesiredAnimation = (PlayerSpeedSqr > 0.0f) ? RunningAnimation : IdleAnimation;
+	UPaperFlipbook* DesiredAnimation = (PlayerWalkSpeed > 0.0f) ? RunningAnimation : IdleAnimation;
+	DesiredAnimation = GetCharacterMovement()->IsFalling() ? FallingAnimation  : DesiredAnimation;
+	
 	if( GetSprite()->GetFlipbook() != DesiredAnimation 	)
 	{
 		GetSprite()->SetFlipbook(DesiredAnimation);
