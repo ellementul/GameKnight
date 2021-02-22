@@ -39,6 +39,9 @@ protected:
 	// The animation to play while idle (standing still)
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Animations)
 	class UPaperFlipbook* IdleAnimation;
+	//The animation pawn in 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Animations)
+	class UPaperFlipbook* FallingAnimation;
 
 	/** Called to choose the correct animation to play based on the character's movement state */
 	void UpdateAnimation();
