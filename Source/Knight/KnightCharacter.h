@@ -31,6 +31,9 @@ class AKnightCharacter : public APaperCharacter
 
 	UTextRenderComponent* TextComponent;
 	virtual void Tick(float DeltaSeconds) override;
+
+	class UTimelineComponent* SoundTimeline;
+
 protected:
 	// The animation to play while running around
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category=Animations)
@@ -60,6 +63,10 @@ protected:
 	// APawn interface
 	virtual void SetupPlayerInputComponent(class UInputComponent* InputComponent) override;
 	// End of APawn interface
+
+	//Sounds Character
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Timeline)
+		class UCurveFloat* fVolumeSoundCurve;
 
 public:
 	AKnightCharacter();
