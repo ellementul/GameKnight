@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "PaperCharacter.h"
+#include "Components/AudioComponent.h"
 #include "KnightCharacter.generated.h"
 
 class UTextRenderComponent;
@@ -32,7 +33,8 @@ class AKnightCharacter : public APaperCharacter
 	UTextRenderComponent* TextComponent;
 	virtual void Tick(float DeltaSeconds) override;
 
-	class UTimelineComponent* SoundTimeline;
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Sound, meta = (AllowPrivateAccess = "true"))
+	class UAudioComponent* ActionSound;
 
 protected:
 	// The animation to play while running around
@@ -67,6 +69,10 @@ protected:
 	//Sounds Character
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Timeline)
 		class UCurveFloat* fVolumeSoundCurve;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Sounds)
+		class USoundBase* WalkSound;
+		
 
 public:
 	AKnightCharacter();
