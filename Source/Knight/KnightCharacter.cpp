@@ -22,14 +22,20 @@ void AKnightCharacter::SetupPlayerInputComponent(class UInputComponent* PlayerIn
 	PlayerInputComponent->BindTouch(IE_Released, this, &AKnightCharacter::TouchStopped);
 }
 
-void ABaseCharacter::UpdateAnimState()
+void AKnightCharacter::UpdateAnimState()
 {
-
-	if (IsWalk)
-	{
+	if (IsWalk) {
 		SetAnimState(WalkState);
 	}
 
+	if (IsFall) {
+		SetAnimState(JumpState);
+	}
+}
+
+bool AKnightCharacter::IsIdle()
+{
+	return !(IsWalk || IsFall);
 }
 
 void AKnightCharacter::BeginSpeak()

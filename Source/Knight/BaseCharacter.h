@@ -83,6 +83,7 @@ protected:
 	/** Called to choose the correct animation to play based on the character's movement state */
 	void UpdateAnimation();
 	virtual void UpdateAnimState();
+	virtual bool IsIdle();
 
 	bool IsWalk;
 	bool IsFall;
@@ -91,7 +92,6 @@ protected:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Animations)
 	FAnimState IdleState;
-
 	
 
 	/** Called for side to side input */

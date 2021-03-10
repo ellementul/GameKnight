@@ -85,6 +85,8 @@ void ABaseCharacter::BeginPlay()
 
 	DisableInput(GetController<APlayerController>());
 
+	SetAnimState(IdleState);
+
 	GetWorldTimerManager().SetTimer(BeginTimerHandle, this, &ABaseCharacter::ActiveCharacter, BeginTimer);
 }
 
@@ -128,10 +130,6 @@ void ABaseCharacter::KillCharacter()
 	}
 }
 
-void ABaseCharacter::UpdateSubStatus(TEnumAsByte<CharacterStatus> SuperStatus)
-{
-}
-
 void ABaseCharacter::Actived()
 {
 }
@@ -149,16 +147,17 @@ void ABaseCharacter::OnKilled_Implementation()
 
 void ABaseCharacter::SetAnimState(FAnimState State)
 {
-	if(State.Animation != nullptr && GetSprite()->GetFlipbook() != State.Animation)
-	{
-		GetSprite()->SetFlipbook(State.Animation);
-	}
 
-	if (State.Sound != nullptr && ActionSound->Sound != State.Sound)
+	UPaperFlipbook* Animation = State.Animation;
+
+	GetSprite()->SetFlipbook(State.Animation);
+
+	if (ActionSound->Sound != State.Sound)
 	{
 		ActionSound->SetSound(State.Sound);
 		ActionSound->Play();
 	}
+		
 }
 
 void ABaseCharacter::UpdateAnimation()
@@ -168,8 +167,6 @@ void ABaseCharacter::UpdateAnimation()
 
 	IsWalk = PlayerWalkSpeed > 0;
 	IsFall = GetCharacterMovement()->IsFalling();
-
-	SetAnimState(IdleState);
 
 	float TravelDirection = PlayerVelocity.X;
 	// Set the rotation so that the character faces his direction of travel.
@@ -185,7 +182,21 @@ void ABaseCharacter::UpdateAnimation()
 		}
 	}
 
-	UpdateAnimState();
+	if (GetStatus() == CharacterStatus::Active) {
+		UpdateAnimState();
+
+		if(IsIdle())
+			SetAnimState(IdleState);
+	}
+}
+
+void ABaseCharacter::UpdateAnimState()
+{
+}
+
+bool ABaseCharacter::IsIdle()
+{
+	return true;
 }
 
 void ABaseCharacter::Tick(float DeltaSeconds)

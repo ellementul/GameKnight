@@ -14,10 +14,7 @@ class AKnightCharacter : public ABaseCharacter
 {
 	GENERATED_BODY()
 
-
 	AKnightCharacter();
-
-	
 
 
 protected:
@@ -29,6 +26,7 @@ protected:
 	// End of APawn interface
 
 	virtual void UpdateAnimState();
+	virtual bool IsIdle();
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Animations)
 	FAnimState WalkState;
