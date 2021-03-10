@@ -7,8 +7,6 @@
 #include "Components/AudioComponent.h"
 #include "BaseCharacter.generated.h"
 
-class UTextRenderComponent;
-
 UENUM()
 
 enum CharacterStatus {
@@ -16,8 +14,20 @@ enum CharacterStatus {
 	Spawned UMETA(DisplayName = "Spawned"),
 	Active  UMETA(DisplayName = "Active"),
 	Passive UMETA(DisplayName = "Passive"),
-	Hurted  UMETA(DisplayName = "Hurted"),
 	Killed  UMETA(DisplayName = "Killed"),
+};
+
+USTRUCT(BlueprintType)
+struct FAnimState {
+
+	GENERATED_BODY()
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	class UPaperFlipbook* Animation;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	class USoundBase* Sound;
+
 };
 
 /**
@@ -45,6 +55,7 @@ private:
 protected:
 
 	virtual void BeginPlay() override;
+	virtual void Tick(float DeltaSeconds) override;
 
 	//Character Status
 
@@ -53,32 +64,15 @@ protected:
 
 	FTimerHandle BeginTimerHandle;
 
-	void ActiveCharacter();
-
 	UFUNCTION(BlueprintCallable, Category = Character)
 	TEnumAsByte<CharacterStatus> GetStatus();
 
-	UFUNCTION(BlueprintCallable, Category = Character)
-	bool HurtCharacter();
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Character Status")
-	float HurtTimer;
-
-	FTimerHandle HurtTimerHandle;
+	void ActiveCharacter();
+	void DeactiveCharacter();
+	void KillCharacter();
 	
-	UFUNCTION(BlueprintCallable, Category = Character)
-	bool KillCharacter();
-
-	UFUNCTION(BlueprintCallable, Category = Character)
-	bool CharacterOff();
-
-	UFUNCTION(BlueprintCallable, Category = Character)
-	bool CharacterOn();
-
-
-	UFUNCTION(BlueprintNativeEvent, Category = Character)
-	void OnHurted();
-	virtual void OnHurted_Implementation();
+	virtual void Actived();
+	virtual void Deactived();
 
 	UFUNCTION(BlueprintNativeEvent, Category = Character)
 	void OnKilled();
@@ -86,21 +80,19 @@ protected:
 
 
 	//Animation
-	// The animation to play while running around
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Animations)
-		class UPaperFlipbook* RunningAnimation;
-
-	// The animation to play while idle (standing still)
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Animations)
-		class UPaperFlipbook* IdleAnimation;
-	//The animation pawn in 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Animations)
-		class UPaperFlipbook* FallingAnimation;
-
-	virtual void Tick(float DeltaSeconds) override;
-
 	/** Called to choose the correct animation to play based on the character's movement state */
 	void UpdateAnimation();
+	virtual void UpdateAnimState();
+
+	bool IsWalk;
+	bool IsFall;
+
+	void SetAnimState(FAnimState State);
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Animations)
+	FAnimState IdleState;
+
+	
 
 	/** Called for side to side input */
 	void MoveRight(float Value);
@@ -116,11 +108,6 @@ protected:
 	// APawn interface
 	virtual void SetupPlayerInputComponent(class UInputComponent* InputComponent) override;
 	// End of APawn interface
-
-	//Sounds Character
-
-	UPROPERTY(VisibleDefaultsOnly, BlueprintReadOnly, Category = Sounds)
-		class USoundBase* WalkSound;
 
 
 public:

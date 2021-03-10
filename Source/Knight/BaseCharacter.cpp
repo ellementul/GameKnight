@@ -71,7 +71,6 @@ ABaseCharacter::ABaseCharacter()
 
 	Status = CharacterStatus::NONE;
 	BeginTimer = 1.0;
-	HurtTimer  = 1.0;
 
 	// Enable replication on the Sprite component so animations show up when networked
 	// GetSprite()->SetIsReplicated(true);
@@ -98,98 +97,79 @@ TEnumAsByte<CharacterStatus> ABaseCharacter::GetStatus() {
 
 void ABaseCharacter::ActiveCharacter()
 {
-	if (Status == CharacterStatus::Spawned || Status == CharacterStatus::Passive || Status == CharacterStatus::Hurted)
+	if (Status == CharacterStatus::Spawned || Status == CharacterStatus::Passive)
 	{
 		Status = CharacterStatus::Active;
 		EnableInput(GetController<APlayerController>());
+
+		Actived();
 	}
 }
 
-bool ABaseCharacter::CharacterOn()
-{
-	if (Status == CharacterStatus::Passive || Status == CharacterStatus::Hurted)
-	{
-		Status = CharacterStatus::Active;
-
-		return true;
-	}
-
-	return false;
-}
-
-bool ABaseCharacter::CharacterOff()
+void ABaseCharacter::DeactiveCharacter()
 {
 	if (Status == CharacterStatus::Active)
 	{
 		Status = CharacterStatus::Passive;
-
-		return true;
-	}
-
-	return false;
-}
-
-bool ABaseCharacter::HurtCharacter()
-{
-	if (Status == CharacterStatus::Active)
-	{
-		Status = CharacterStatus::Hurted;
-
 		DisableInput(GetController<APlayerController>());
 
-		GetWorldTimerManager().SetTimer(HurtTimerHandle, this, &ABaseCharacter::ActiveCharacter, HurtTimer);
-
-		return true;
+		Deactived();
 	}
-
-	return false;
 }
 
-bool ABaseCharacter::KillCharacter()
+void ABaseCharacter::KillCharacter()
 {
 	if (Status == CharacterStatus::Active)
 	{
 		Status = CharacterStatus::Killed;
+		DisableInput(GetController<APlayerController>());
 
-		return true;
+		OnKilled();
 	}
-
-	return false;
 }
 
-
-void ABaseCharacter::OnHurted_Implementation()
+void ABaseCharacter::UpdateSubStatus(TEnumAsByte<CharacterStatus> SuperStatus)
 {
+}
 
+void ABaseCharacter::Actived()
+{
+}
+
+void ABaseCharacter::Deactived()
+{
 }
 
 void ABaseCharacter::OnKilled_Implementation()
 {
-
 }
 
 //////////////////////////////////////////////////////////////////////////
 // Animation
+
+void ABaseCharacter::SetAnimState(FAnimState State)
+{
+	if(State.Animation != nullptr && GetSprite()->GetFlipbook() != State.Animation)
+	{
+		GetSprite()->SetFlipbook(State.Animation);
+	}
+
+	if (State.Sound != nullptr && ActionSound->Sound != State.Sound)
+	{
+		ActionSound->SetSound(State.Sound);
+		ActionSound->Play();
+	}
+}
 
 void ABaseCharacter::UpdateAnimation()
 {
 	const FVector PlayerVelocity = GetVelocity();
 	const float PlayerWalkSpeed = PlayerVelocity.GetAbs().X;
 
-	// Are we moving or standing still?
-	UPaperFlipbook* DesiredAnimation = (PlayerWalkSpeed > 0.0f) ? RunningAnimation : IdleAnimation;
-	DesiredAnimation = GetCharacterMovement()->IsFalling() ? FallingAnimation : DesiredAnimation;
+	IsWalk = PlayerWalkSpeed > 0;
+	IsFall = GetCharacterMovement()->IsFalling();
 
-	if (GetSprite()->GetFlipbook() != DesiredAnimation)
-	{
-		GetSprite()->SetFlipbook(DesiredAnimation);
-	}
-
-	if (GetSprite()->GetFlipbook() != RunningAnimation && WalkSound)
-	{
-		ActionSound->SetSound(WalkSound);
-		ActionSound->Play();
-	}
+	SetAnimState(IdleState);
 
 	float TravelDirection = PlayerVelocity.X;
 	// Set the rotation so that the character faces his direction of travel.
@@ -204,6 +184,8 @@ void ABaseCharacter::UpdateAnimation()
 			Controller->SetControlRotation(FRotator(0.0f, 0.0f, 0.0f));
 		}
 	}
+
+	UpdateAnimState();
 }
 
 void ABaseCharacter::Tick(float DeltaSeconds)

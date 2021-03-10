@@ -17,6 +17,9 @@ class AKnightCharacter : public ABaseCharacter
 
 	AKnightCharacter();
 
+	
+
+
 protected:
 
 	virtual void BeginPlay() override;
@@ -25,5 +28,22 @@ protected:
 	virtual void SetupPlayerInputComponent(class UInputComponent* InputComponent) override;
 	// End of APawn interface
 
+	virtual void UpdateAnimState();
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Animations)
+	FAnimState WalkState;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Animations)
+	FAnimState JumpState;
+
+public:
+
+	UFUNCTION(BlueprintCallable, Category = Character)
+	void BeginSpeak();
+
+	UFUNCTION(BlueprintCallable, Category = Character)
+	void EndSpeak();
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = CharacterStatus)
+	bool IsSpeak;
 };
