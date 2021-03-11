@@ -71,6 +71,8 @@ ABaseCharacter::ABaseCharacter()
 
 	Status = CharacterStatus::NONE;
 	BeginTimer = 1.0;
+	HurtTimer = 1.0;
+
 
 	// Enable replication on the Sprite component so animations show up when networked
 	// GetSprite()->SetIsReplicated(true);
@@ -80,6 +82,8 @@ ABaseCharacter::ABaseCharacter()
 void ABaseCharacter::BeginPlay()
 {
 	Status = CharacterStatus::Spawned;
+
+	Health = MaxHealth;
 
 	Super::BeginPlay();
 
@@ -114,8 +118,41 @@ void ABaseCharacter::DeactiveCharacter()
 	{
 		Status = CharacterStatus::Passive;
 		DisableInput(GetController<APlayerController>());
+		SetAnimState(IdleState);
 
 		Deactived();
+	}
+}
+
+int ABaseCharacter::GetHealth()
+{
+	return Health;
+}
+
+void ABaseCharacter::DamgeCharacter(int Damage)
+{
+	if (Damage < 0)
+		Damage = 0;
+
+	if (Damage > Health)
+		Damage = Health;
+
+	Damaged(Damage);
+
+	DeactiveCharacter();
+
+	GetWorldTimerManager().SetTimer(HurtTimerHandle, this, &ABaseCharacter::EndHurt, HurtTimer);
+
+	OnHurted();
+}
+
+void ABaseCharacter::EndHurt()
+{
+	ActiveCharacter();
+
+	if (Health <= 0)
+	{
+		KillCharacter();
 	}
 }
 
@@ -127,8 +164,19 @@ void ABaseCharacter::KillCharacter()
 		DisableInput(GetController<APlayerController>());
 
 		OnKilled();
+
+		SetAnimState(KillState, false);
+		GetCapsuleComponent()->SetCollisionProfileName("OverlapAll");
+		GetCapsuleComponent()->UpdateCollisionProfile();
 	}
 }
+
+void ABaseCharacter::Damaged(int Damage)
+{
+	Health -= Damage;
+}
+
+
 
 void ABaseCharacter::Actived()
 {
@@ -138,6 +186,9 @@ void ABaseCharacter::Deactived()
 {
 }
 
+void ABaseCharacter::OnHurted_Implementation()
+{
+}
 void ABaseCharacter::OnKilled_Implementation()
 {
 }
@@ -145,12 +196,13 @@ void ABaseCharacter::OnKilled_Implementation()
 //////////////////////////////////////////////////////////////////////////
 // Animation
 
-void ABaseCharacter::SetAnimState(FAnimState State)
+void ABaseCharacter::SetAnimState(FAnimState State, bool looping)
 {
 
 	UPaperFlipbook* Animation = State.Animation;
 
 	GetSprite()->SetFlipbook(State.Animation);
+	GetSprite()->SetLooping(looping);
 
 	if (ActionSound->Sound != State.Sound)
 	{

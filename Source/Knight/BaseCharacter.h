@@ -69,6 +69,8 @@ protected:
 
 	void ActiveCharacter();
 	void DeactiveCharacter();
+
+	UFUNCTION(BlueprintCallable, Category = Character)
 	void KillCharacter();
 	
 	virtual void Actived();
@@ -78,6 +80,28 @@ protected:
 	void OnKilled();
 	virtual void OnKilled_Implementation();
 
+	//Health and Damage
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = HealthAndDamage)
+	int MaxHealth = 1;
+	int Health    = 0;
+
+	FTimerHandle HurtTimerHandle;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = HealthAndDamage)
+	float HurtTimer;
+
+	UFUNCTION(BlueprintCallable, Category = HealthAndDamage)
+	int GetHealth();
+
+	UFUNCTION(BlueprintCallable, Category = HealthAndDamage)
+	void DamgeCharacter(int Damage);
+	void EndHurt();
+
+	virtual void Damaged(int Damage);
+
+	UFUNCTION(BlueprintNativeEvent, Category = HealthAndDamage)
+	void OnHurted();
+	virtual void OnHurted_Implementation();
 
 	//Animation
 	/** Called to choose the correct animation to play based on the character's movement state */
@@ -88,10 +112,13 @@ protected:
 	bool IsWalk;
 	bool IsFall;
 
-	void SetAnimState(FAnimState State);
+	void SetAnimState(FAnimState State, bool looping = true);
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Animations)
 	FAnimState IdleState;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Animations)
+	FAnimState KillState;
 	
 
 	/** Called for side to side input */

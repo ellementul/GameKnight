@@ -4,10 +4,11 @@
 
 AKnightCharacter::AKnightCharacter()
 {
+	MaxHealth = 3;
 }
 
-void AKnightCharacter::BeginPlay(){
-
+void AKnightCharacter::BeginPlay()
+{
 	Super::BeginPlay();
 }
 
