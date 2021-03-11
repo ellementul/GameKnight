@@ -3,69 +3,45 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "PaperCharacter.h"
+#include "BaseCharacter.h"
 #include "KnightCharacter.generated.h"
 
-class UTextRenderComponent;
-
 /**
- * This class is the default character for Knight, and it is responsible for all
- * physical interaction between the player and the world.
- *
- * The capsule component (inherited from ACharacter) handles collision with the world
- * The CharacterMovementComponent (inherited from ACharacter) handles movement of the collision capsule
- * The Sprite component (inherited from APaperCharacter) handles the visuals
+ * 
  */
-UCLASS(config=Game)
-class AKnightCharacter : public APaperCharacter
+UCLASS()
+class AKnightCharacter : public ABaseCharacter
 {
 	GENERATED_BODY()
 
-	/** Side view camera */
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category=Camera, meta=(AllowPrivateAccess="true"))
-	class UCameraComponent* SideViewCameraComponent;
+	AKnightCharacter();
 
-	/** Camera boom positioning the camera beside the character */
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
-	class USpringArmComponent* CameraBoom;
 
-	UTextRenderComponent* TextComponent;
-	virtual void Tick(float DeltaSeconds) override;
 protected:
-	// The animation to play while running around
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category=Animations)
-	class UPaperFlipbook* RunningAnimation;
 
-	// The animation to play while idle (standing still)
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Animations)
-	class UPaperFlipbook* IdleAnimation;
-	//The animation pawn in 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Animations)
-	class UPaperFlipbook* FallingAnimation;
-
-	/** Called to choose the correct animation to play based on the character's movement state */
-	void UpdateAnimation();
-
-	/** Called for side to side input */
-	void MoveRight(float Value);
-
-	void UpdateCharacter();
-
-	/** Handle touch inputs. */
-	void TouchStarted(const ETouchIndex::Type FingerIndex, const FVector Location);
-
-	/** Handle touch stop event. */
-	void TouchStopped(const ETouchIndex::Type FingerIndex, const FVector Location);
+	virtual void BeginPlay() override;
 
 	// APawn interface
 	virtual void SetupPlayerInputComponent(class UInputComponent* InputComponent) override;
 	// End of APawn interface
 
-public:
-	AKnightCharacter();
+	virtual void UpdateAnimState();
+	virtual bool IsIdle();
 
-	/** Returns SideViewCameraComponent subobject **/
-	FORCEINLINE class UCameraComponent* GetSideViewCameraComponent() const { return SideViewCameraComponent; }
-	/** Returns CameraBoom subobject **/
-	FORCEINLINE class USpringArmComponent* GetCameraBoom() const { return CameraBoom; }
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Animations)
+	FAnimState WalkState;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Animations)
+	FAnimState JumpState;
+
+public:
+
+	UFUNCTION(BlueprintCallable, Category = Character)
+	void BeginSpeak();
+
+	UFUNCTION(BlueprintCallable, Category = Character)
+	void EndSpeak();
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = CharacterStatus)
+	bool IsSpeak;
 };
