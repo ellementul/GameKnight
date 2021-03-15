@@ -129,7 +129,7 @@ int ABaseCharacter::GetHealth()
 	return Health;
 }
 
-void ABaseCharacter::DamgeCharacter(int Damage)
+void ABaseCharacter::DamageCharacter(int Damage)
 {
 	if (Damage < 0)
 		Damage = 0;

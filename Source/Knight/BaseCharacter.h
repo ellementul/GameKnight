@@ -93,8 +93,6 @@ protected:
 	UFUNCTION(BlueprintCallable, Category = HealthAndDamage)
 	int GetHealth();
 
-	UFUNCTION(BlueprintCallable, Category = HealthAndDamage)
-	void DamgeCharacter(int Damage);
 	void EndHurt();
 
 	virtual void Damaged(int Damage);
@@ -144,4 +142,7 @@ public:
 	FORCEINLINE class UCameraComponent* GetSideViewCameraComponent() const { return SideViewCameraComponent; }
 	/** Returns CameraBoom subobject **/
 	FORCEINLINE class USpringArmComponent* GetCameraBoom() const { return CameraBoom; }
+
+	UFUNCTION(BlueprintCallable, Category = HealthAndDamage)
+		void DamageCharacter(int Damage);
 };
