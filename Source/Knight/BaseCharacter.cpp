@@ -137,23 +137,30 @@ void ABaseCharacter::DamageCharacter(int Damage)
 	if (Damage > Health)
 		Damage = Health;
 
-	Damaged(Damage);
+	if (Damaged(Damage))
+	{
+		OnHurted();
 
-	DeactiveCharacter();
+		if (Health <= 0)
+		{
+			KillCharacter();
+		}
+		else
+		{
+			DeactiveCharacter();
 
-	GetWorldTimerManager().SetTimer(HurtTimerHandle, this, &ABaseCharacter::EndHurt, HurtTimer);
+			SetAnimState(HurtState);
 
-	OnHurted();
+			GetWorldTimerManager().SetTimer(HurtTimerHandle, this, &ABaseCharacter::EndHurt, HurtTimer);
+		}
+	}
 }
 
 void ABaseCharacter::EndHurt()
 {
-	ActiveCharacter();
+	SetAnimState(IdleState);
 
-	if (Health <= 0)
-	{
-		KillCharacter();
-	}
+	ActiveCharacter();
 }
 
 void ABaseCharacter::KillCharacter()
@@ -171,9 +178,10 @@ void ABaseCharacter::KillCharacter()
 	}
 }
 
-void ABaseCharacter::Damaged(int Damage)
+bool ABaseCharacter::Damaged(int Damage)
 {
 	Health -= Damage;
+	return true;
 }
 
 

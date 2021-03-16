@@ -18,4 +18,19 @@ class AKnightGameMode : public AGameModeBase
 	GENERATED_BODY()
 public:
 	AKnightGameMode();
+
+	virtual AActor* FindPlayerStart_Implementation(AController* Player, const FString& IncomingName) override;
+
+	UFUNCTION()
+	void SetStartPlayerTag(FString StartPlayerTag);
+
+protected:
+
+	virtual void BeginPlay() override;
+
+	UFUNCTION()
+	void ReSpawnCharacter(AActor* DestroyedActor);
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = PlayerStart)
+	FString CurrentStartPlayerTag;
 };

@@ -4,10 +4,12 @@
 
 #include "CoreMinimal.h"
 #include "PaperSpriteActor.h"
+#include "Components/SceneComponent.h"
 #include "KnightCharacter.h"
 #include "Trap.generated.h"
 
 class AKnightCharacter;
+class USceneComponent;
 
 /**
  * 
@@ -17,6 +19,11 @@ class KNIGHT_API ATrap : public APaperSpriteActor
 {
 	GENERATED_BODY()
 
+	ATrap();
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
+	class USceneComponent* LaunchPoint;
+
 protected:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = HealthAndDamage)
@@ -25,6 +32,6 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = HealthAndDamage)
 	float LaunchForce = 1000;
 
-	virtual void NotifyHit(class UPrimitiveComponent* MyComp, AActor* Other, class UPrimitiveComponent* OtherComp, bool bSelfMoved, FVector HitLocation, FVector HitNormal, FVector NormalImpulse, const FHitResult& Hit);
+	virtual void NotifyActorBeginOverlap(AActor* OtherActor);
 	
 };

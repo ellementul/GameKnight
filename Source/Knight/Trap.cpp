@@ -3,13 +3,24 @@
 
 #include "Trap.h"
 
-void ATrap::NotifyHit(UPrimitiveComponent * MyComp, AActor * Other, UPrimitiveComponent * OtherComp, bool bSelfMoved, FVector HitLocation, FVector HitNormal, FVector NormalImpulse, const FHitResult & Hit)
+ATrap::ATrap()
 {
-	AKnightCharacter* Knight = Cast<AKnightCharacter>(Other);
+	LaunchPoint = CreateDefaultSubobject<USceneComponent>(TEXT("LaunchPoint"));
+	LaunchPoint->SetupAttachment(RootComponent);
+}
+
+void ATrap::NotifyActorBeginOverlap(AActor* OtherActor)
+{
+	AKnightCharacter* Knight = Cast<AKnightCharacter>(OtherActor);
 
 	if (Knight) {
 		Knight->DamageCharacter(DamagePoint);
-		FVector LaunchImpulse = (-1) * LaunchForce * HitNormal;
+		FVector LocationCharacter = Knight->GetActorLocation();
+		FVector LocationLaunch    = LaunchPoint->GetComponentLocation();
+		FVector LaunchDirect      = (LocationCharacter - LocationLaunch);
+		LaunchDirect.Normalize();
+
+		FVector LaunchImpulse     = LaunchForce * LaunchDirect;
 		Knight->LaunchCharacter(LaunchImpulse, false, false);
 	}
 }

@@ -28,6 +28,8 @@ protected:
 	virtual void UpdateAnimState();
 	virtual bool IsIdle();
 
+	virtual bool Damaged(int Damage) override;
+
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Animations)
 	FAnimState WalkState;
 

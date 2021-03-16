@@ -95,7 +95,7 @@ protected:
 
 	void EndHurt();
 
-	virtual void Damaged(int Damage);
+	virtual bool Damaged(int Damage);
 
 	UFUNCTION(BlueprintNativeEvent, Category = HealthAndDamage)
 	void OnHurted();
@@ -114,6 +114,9 @@ protected:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Animations)
 	FAnimState IdleState;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Animations)
+	FAnimState HurtState;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Animations)
 	FAnimState KillState;
