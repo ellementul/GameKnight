@@ -4,10 +4,11 @@
 
 AKnightCharacter::AKnightCharacter()
 {
+	MaxHealth = 3;
 }
 
-void AKnightCharacter::BeginPlay(){
-
+void AKnightCharacter::BeginPlay()
+{
 	Super::BeginPlay();
 }
 
@@ -36,6 +37,18 @@ void AKnightCharacter::UpdateAnimState()
 bool AKnightCharacter::IsIdle()
 {
 	return !(IsWalk || IsFall);
+}
+
+bool AKnightCharacter::Damaged(int Damage)
+{
+	int OldHealth = Health;
+
+	if (GetStatus() == CharacterStatus::Active)
+	{
+		Health -= Damage;
+	}
+
+	return (Health != OldHealth);
 }
 
 void AKnightCharacter::BeginSpeak()
