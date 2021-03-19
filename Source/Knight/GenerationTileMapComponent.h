@@ -1,6 +1,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "PaperSpriteActor.h"
 #include "PaperTileSet.h"
 #include "PaperTileMap.h"
 #include "PaperTileMapComponent.h"
@@ -9,9 +10,23 @@
 
 #include "GenerationTileMapComponent.generated.h"
 
+class APaperSpriteActor;
 class UPaperTileMap;
 class UHashedTileSet;
 class UGeneretionHashMap;
+
+USTRUCT(BlueprintType)
+struct FActorBindTile {
+
+	GENERATED_BODY()
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	FPaperTileInfo ActorTile;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	class TSubclassOf<APaperSpriteActor> Actor;
+
+};
 
 /**
  * 
@@ -25,11 +40,14 @@ public:
 
 	UGenerationTileMapComponent();
 
-	UPROPERTY(Category = Setup, EditAnywhere, BlueprintReadWrite)
+	UPROPERTY(Category = Tiles, EditAnywhere, BlueprintReadWrite)
 		TArray<UPaperTileMap*> TilePatterns;
 
-	UPROPERTY(Category = Setup, EditAnywhere, BlueprintReadWrite)
+	UPROPERTY(Category = Tiles, EditAnywhere, BlueprintReadWrite)
 		FPaperTileInfo ErrorTile;
+
+	UPROPERTY(Category = TriggersAndCharacters, EditAnywhere, BlueprintReadWrite)
+		TArray<FActorBindTile> Triggers;
 
 	UFUNCTION(BlueprintCallable, Category = "Sprite")
 		void Generation();
