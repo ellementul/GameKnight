@@ -21,11 +21,22 @@ struct FActorBindTile {
 	GENERATED_BODY()
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	FPaperTileInfo ActorTile;
+	FPaperTileInfo Tile;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	class TSubclassOf<APaperSpriteActor> Actor;
+};
 
+USTRUCT(BlueprintType)
+struct FActorSpawning {
+
+	GENERATED_BODY()
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	class TSubclassOf<APaperSpriteActor> ClassActor;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	FVector Location;
 };
 
 /**
@@ -49,14 +60,19 @@ public:
 	UPROPERTY(Category = TriggersAndCharacters, EditAnywhere, BlueprintReadWrite)
 		TArray<FActorBindTile> Triggers;
 
-	UFUNCTION(BlueprintCallable, Category = "Sprite")
+	UFUNCTION(BlueprintCallable, Category = Category = TriggersAndCharacters)
+	TArray<FActorSpawning> GetBindActors();
+
+	UFUNCTION(BlueprintCallable, Category = "TileMap")
 		void Generation();
 
-	UFUNCTION(BlueprintCallable, Category = "Sprite")
+	UFUNCTION(BlueprintCallable, Category = "TileMap")
 		void Clear();
 
 private:
 	class UHashedTileSet* HashTiles;
 
 	class UGeneretionHashMap* GenMap;
+
+	class TSubclassOf<APaperSpriteActor> GetBindActor(FPaperTileInfo Tile);
 };

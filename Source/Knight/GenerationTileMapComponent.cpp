@@ -58,6 +58,51 @@ void UGenerationTileMapComponent::Generation()
 	RebuildCollision();
 }
 
+TArray<FActorSpawning> UGenerationTileMapComponent::GetBindActors()
+{
+	TArray<FActorSpawning> Actors;
+
+	for (int l = 0; l < TileMap->TileLayers.Num(); l++) {
+
+		for (int x = 0; x < TileMap->MapWidth; x++) {
+
+			for (int y = 0; y < TileMap->MapHeight; y++) 
+			{
+				FPaperTileInfo Tile = TileMap->TileLayers[l]->GetCell(x, y);
+				UClass* ClassActor = GetBindActor(Tile);
+
+				if (ClassActor)
+				{
+					FActorSpawning ActorSpawning = FActorSpawning();
+					ActorSpawning.ClassActor = ClassActor;
+					ActorSpawning.Location   = TileMap->GetTilePositionInLocalSpace(x, y, l);
+					ActorSpawning.Location.X += TileMap->TileWidth / 2;
+					ActorSpawning.Location.Z -= TileMap->TileHeight / 2;
+
+					Actors.Add(ActorSpawning);
+
+					SetTile(x, y, l, FPaperTileInfo());
+				}
+			}
+		}
+	}
+
+	return Actors;
+}
+
+class TSubclassOf<APaperSpriteActor>  UGenerationTileMapComponent::GetBindActor(FPaperTileInfo Tile)
+{
+	for (auto& Trigger : Triggers)
+	{
+		if (Trigger.Tile == Tile)
+		{
+			return Trigger.Actor;	
+		}
+	}
+
+	return nullptr;
+}
+
 void UGenerationTileMapComponent::Clear()
 {
 	for (int l = 0; l < TileMap->TileLayers.Num(); l++) {
