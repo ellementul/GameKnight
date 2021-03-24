@@ -4,6 +4,11 @@
 
 #include "CoreMinimal.h"
 #include "PaperCharacter.h"
+#include "PaperFlipbookComponent.h"
+#include "Components/CapsuleComponent.h"
+#include "Components/InputComponent.h"
+#include "GameFramework/CharacterMovementComponent.h"
+#include "GameFramework/Controller.h"
 #include "Components/AudioComponent.h"
 #include "BaseCharacter.generated.h"
 
@@ -37,14 +42,6 @@ UCLASS(config = Game)
 class ABaseCharacter : public APaperCharacter
 {
 	GENERATED_BODY()
-
-	/** Side view camera */
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
-	class UCameraComponent* SideViewCameraComponent;
-
-	/** Camera boom positioning the camera beside the character */
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
-		class USpringArmComponent* CameraBoom;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Sound, meta = (AllowPrivateAccess = "true"))
 	class UAudioComponent* ActionSound;
@@ -107,8 +104,9 @@ protected:
 	virtual void UpdateAnimState();
 	virtual bool IsIdle();
 
-	bool IsWalk;
-	bool IsFall;
+	bool IsLeftDirect = false;
+	bool IsWalk       = false;
+	bool IsFall       = false;
 
 	void SetAnimState(FAnimState State, bool looping = true);
 
@@ -140,11 +138,6 @@ protected:
 
 public:
 	ABaseCharacter();
-
-	/** Returns SideViewCameraComponent subobject **/
-	FORCEINLINE class UCameraComponent* GetSideViewCameraComponent() const { return SideViewCameraComponent; }
-	/** Returns CameraBoom subobject **/
-	FORCEINLINE class USpringArmComponent* GetCameraBoom() const { return CameraBoom; }
 
 	UFUNCTION(BlueprintCallable, Category = HealthAndDamage)
 		void DamageCharacter(int Damage);

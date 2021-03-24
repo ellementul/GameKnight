@@ -1,14 +1,7 @@
 // Copyright Epic Games, Inc. All Rights Reserved.
 
 #include "BaseCharacter.h"
-#include "PaperFlipbookComponent.h"
-#include "Components/TextRenderComponent.h"
-#include "Components/CapsuleComponent.h"
-#include "Components/InputComponent.h"
-#include "GameFramework/SpringArmComponent.h"
-#include "GameFramework/CharacterMovementComponent.h"
-#include "GameFramework/Controller.h"
-#include "Camera/CameraComponent.h"
+
 
 DEFINE_LOG_CATEGORY_STATIC(SideScrollerCharacter, Log, All);
 
@@ -26,28 +19,6 @@ ABaseCharacter::ABaseCharacter()
 	GetCapsuleComponent()->SetCapsuleHalfHeight(96.0f);
 	GetCapsuleComponent()->SetCapsuleRadius(40.0f);
 
-	// Create a camera boom attached to the root (capsule)
-	CameraBoom = CreateDefaultSubobject<USpringArmComponent>(TEXT("CameraBoom"));
-	CameraBoom->SetupAttachment(RootComponent);
-	CameraBoom->TargetArmLength = 500.0f;
-	CameraBoom->SocketOffset = FVector(0.0f, 0.0f, 75.0f);
-	CameraBoom->SetUsingAbsoluteRotation(true);
-	CameraBoom->bDoCollisionTest = false;
-	CameraBoom->SetRelativeRotation(FRotator(0.0f, -90.0f, 0.0f));
-
-
-	// Create an orthographic camera (no perspective) and attach it to the boom
-	SideViewCameraComponent = CreateDefaultSubobject<UCameraComponent>(TEXT("SideViewCamera"));
-	SideViewCameraComponent->ProjectionMode = ECameraProjectionMode::Orthographic;
-	SideViewCameraComponent->OrthoWidth = 2048.0f;
-	SideViewCameraComponent->SetupAttachment(CameraBoom, USpringArmComponent::SocketName);
-
-	// Prevent all automatic rotation behavior on the camera, character, and camera component
-	CameraBoom->SetUsingAbsoluteRotation(true);
-	SideViewCameraComponent->bUsePawnControlRotation = false;
-	SideViewCameraComponent->bAutoActivate = true;
-	GetCharacterMovement()->bOrientRotationToMovement = false;
-
 	// Configure character movement
 	GetCharacterMovement()->GravityScale = 2.0f;
 	GetCharacterMovement()->AirControl = 0.80f;
@@ -64,6 +35,7 @@ ABaseCharacter::ABaseCharacter()
 	// Note: This can cause a little floating when going up inclines; you can choose the tradeoff between better
 	// behavior on the edge of a ledge versus inclines by setting this to true or false
 	GetCharacterMovement()->bUseFlatBaseForFloorChecks = true;
+	GetCharacterMovement()->bOrientRotationToMovement = false;
 
 	//Sounds
 	ActionSound = CreateDefaultSubobject<UAudioComponent>(TEXT("ActionSound"));
@@ -230,16 +202,17 @@ void ABaseCharacter::UpdateAnimation()
 
 	float TravelDirection = PlayerVelocity.X;
 	// Set the rotation so that the character faces his direction of travel.
-	if (Controller != nullptr)
+
+	
+	if (TravelDirection < 0.0f)
 	{
-		if (TravelDirection < 0.0f)
-		{
-			Controller->SetControlRotation(FRotator(0.0, 180.0f, 0.0f));
-		}
-		else if (TravelDirection > 0.0f)
-		{
-			Controller->SetControlRotation(FRotator(0.0f, 0.0f, 0.0f));
-		}
+		GetSprite()->SetRelativeRotation(FRotator(0.0, 180.0f, 0.0f));
+		IsLeftDirect = true;
+	}
+	else if(TravelDirection > 0.0f)
+	{
+		GetSprite()->SetRelativeRotation(FRotator(0.0f, 0.0f, 0.0f));
+		IsLeftDirect = false;
 	}
 
 	if (GetStatus() == CharacterStatus::Active) {
@@ -297,9 +270,7 @@ void ABaseCharacter::TouchStopped(const ETouchIndex::Type FingerIndex, const FVe
 
 void ABaseCharacter::UpdateCharacter()
 {
-	// Update animation to match the motion
 	UpdateAnimation();
-
 }
 
 
