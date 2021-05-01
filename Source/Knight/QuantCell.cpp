@@ -16,6 +16,7 @@ UQuantCell::UQuantCell(const FObjectInitializer& ObjectInitializer)
 
 	Dirs = ConstructorStatics.Dirs;
 	*/
+	Dirs = CreateDefaultSubobject<UTileDirects>(TEXT("Dirs"));
 
 	Tile = -1;
 

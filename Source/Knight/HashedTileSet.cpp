@@ -5,8 +5,20 @@
 
 UHashedTileSet::UHashedTileSet(const FObjectInitializer& ObjectInitializer)
 	: Super(ObjectInitializer) {
-	
-	TileSet.Add( FPaperTileInfo() );
+
+	struct FConstructorStatics
+	{
+		TArray<FPaperTileInfo> SingleHashTileSet;
+
+		FConstructorStatics()
+		{
+			SingleHashTileSet.Add(FPaperTileInfo());
+		}
+	};
+
+	static FConstructorStatics ConstructorStatics;
+
+	HashTileSet = ConstructorStatics.SingleHashTileSet;
 }
 
 bool UHashedTileSet::AddPattern(UPaperTileMap* TileMap) {
@@ -32,6 +44,8 @@ bool UHashedTileSet::AddPattern(UPaperTileMap* TileMap) {
 
 TArray < TArray< TArray<int> > > UHashedTileSet::HashPattern(UPaperTileMap* TileMap) {
 	
+	AddPattern(TileMap);
+
 	TArray< TArray< TArray<int> > > HashedMap;
 
 	UE_LOG(LogTemp, Log, TEXT("Size pattern width: %d, height: %d"), TileMap->MapWidth, TileMap->MapHeight);
@@ -62,8 +76,8 @@ TArray < TArray< TArray<int> > > UHashedTileSet::HashPattern(UPaperTileMap* Tile
 int UHashedTileSet::AddTile(FPaperTileInfo tile)
 {
 	int index;
-	if (!TileSet.Find(tile, index)) {
-		index = TileSet.Add(tile);
+	if (!HashTileSet.Find(tile, index)) {
+		index = HashTileSet.Add(tile);
 	}
 
 	return index;
@@ -72,7 +86,7 @@ int UHashedTileSet::AddTile(FPaperTileInfo tile)
 int UHashedTileSet::GetIndex(FPaperTileInfo Tile)
 {
 	int Index;
-	if (TileSet.Find(Tile, Index)) {
+	if (HashTileSet.Find(Tile, Index)) {
 		return Index;
 	}
 	else {
@@ -84,13 +98,13 @@ int UHashedTileSet::GetIndex(FPaperTileInfo Tile)
 
 int UHashedTileSet::GetMaxIndex()
 {
-	return TileSet.Num();
+	return HashTileSet.Num() - 1;
 }
 
 struct FPaperTileInfo UHashedTileSet::GetTile(int Index)
 {
-	if ( TileSet.IsValidIndex(Index) ) {
-		return TileSet[Index];
+	if (HashTileSet.IsValidIndex(Index) ) {
+		return HashTileSet[Index];
 	}
 	else {
 		UE_LOG(LogTemp, Error, TEXT("HashedTileSet: Invalid index: %d"), Index);

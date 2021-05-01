@@ -6,10 +6,14 @@
 UTileDirects::UTileDirects(const FObjectInitializer& ObjectInitializer)
 	: Super(ObjectInitializer)
 {
-	Dirs.Add(0, FIntPoint(1, 0));
-	Dirs.Add(1, FIntPoint(0, -1));
-	Dirs.Add(2, FIntPoint(-1, 0));
-	Dirs.Add(3, FIntPoint(0, 1));
+	Dirs.Add(0, FIntPoint(1, 0)); //Направо
+	Dirs.Add(1, FIntPoint(1, -1)); //Направо-вверх
+	Dirs.Add(2, FIntPoint(0, -1)); //Вверх
+	Dirs.Add(3, FIntPoint(-1, -1)); //Налево-вверх
+	Dirs.Add(4, FIntPoint(-1, 0)); //Налево
+	Dirs.Add(5, FIntPoint(-1, 1)); //Налево-вниз
+	Dirs.Add(6, FIntPoint(0, 1)); //Вниз
+	Dirs.Add(7, FIntPoint(1, 1)); //Направо-вниз
 
 	return;
 }
@@ -25,10 +29,14 @@ const TArray<int> UTileDirects::GetDownToUp()
 {
 	TArray<int>  IntDirs;
 	
-	IntDirs.Add(3);
-	IntDirs.Add(2);
-	IntDirs.Add(0);
-	IntDirs.Add(1);
+	IntDirs.Add(6); //Вниз
+	IntDirs.Add(7); //Направо-вниз
+	IntDirs.Add(5); //Налево-вниз
+	IntDirs.Add(4); //Налево
+	IntDirs.Add(0); //Направо
+	IntDirs.Add(1); //Направо-вверх
+	IntDirs.Add(3); //Налево-вверхц
+	IntDirs.Add(2); //Вверх
 	
 	return IntDirs;
 }
@@ -58,22 +66,8 @@ FIntPoint UTileDirects::GetCoords(int Dir)
 
 int UTileDirects::Invert(int Dir)
 {
-	int InvertDir = 0;
-	switch (Dir)
-	{
-	case 0:  InvertDir = 2;
-		break;
-	case 1:  InvertDir = 3;
-		break;
-	case 2:  InvertDir = 0;
-		break;
-	case 3:  InvertDir = 1;
-		break;
-	default:
-		UE_LOG(LogTemp, Error, TEXT(" UTileDirects::Invert: Dir[%d] is wrong!"), Dir);
-	}
-
-	return InvertDir;
+	FIntPoint Coords = GetCoords(Dir);
+	return GetDirByCoords( Invert(Coords ));
 }
 
 bool UTileDirects::IsValid(int Dir)
@@ -83,7 +77,7 @@ bool UTileDirects::IsValid(int Dir)
 
 FIntPoint UTileDirects::Invert(FIntPoint Coords)
 {
-	return GetCoords( Invert(GetDirByCoords(Coords)) );
+	return Coords * FIntPoint(-1, -1);
 }
 
 

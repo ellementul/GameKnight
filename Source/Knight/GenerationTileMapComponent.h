@@ -52,6 +52,9 @@ public:
 	UGenerationTileMapComponent();
 
 	UPROPERTY(Category = Tiles, EditAnywhere, BlueprintReadWrite)
+		class UPaperTileMap* BeginTileMap;
+
+	UPROPERTY(Category = Tiles, EditAnywhere, BlueprintReadWrite)
 		TArray<UPaperTileMap*> TilePatterns;
 
 	UPROPERTY(Category = Tiles, EditAnywhere, BlueprintReadWrite)
@@ -64,10 +67,13 @@ public:
 	TArray<FActorSpawning> GetBindActors();
 
 	UFUNCTION(BlueprintCallable, Category = "TileMap")
-		void Generation();
+	void Build();
 
 	UFUNCTION(BlueprintCallable, Category = "TileMap")
-		void Clear();
+	void Generation();
+
+	UFUNCTION(BlueprintCallable, Category = "TileMap")
+	void Clear();
 
 private:
 	class UHashedTileSet* HashTiles;
@@ -75,4 +81,8 @@ private:
 	class UGeneretionHashMap* GenMap;
 
 	class TSubclassOf<APaperSpriteActor> GetBindActor(FPaperTileInfo Tile);
+
+	TArrayInt3D         DefaultHashedMap;
+
+	TArray<TArrayInt3D> HashedPatterns;
 };

@@ -8,31 +8,31 @@ using TArrayInt3D = TArray < TArray< TArray<int> > >;
 UGenerationTileMapComponent::UGenerationTileMapComponent(const FObjectInitializer& ObjectInitializer)
 	: Super(ObjectInitializer)
 {
+	HashTiles = CreateDefaultSubobject<UHashedTileSet>(TEXT("HashTiles"));
+	GenMap    = CreateDefaultSubobject<UGeneretionHashMap>(TEXT("GenMap"));
+
 	return;
 }
 
-void UGenerationTileMapComponent::Generation()
-{	
-	HashTiles = NewObject<UHashedTileSet>();
-	GenMap   = NewObject<UGeneretionHashMap>();
+void UGenerationTileMapComponent::Build()
+{
+	DefaultHashedMap = HashTiles->HashPattern(BeginTileMap);
 
-	HashTiles->AddPattern(TileMap);
-	TArrayInt3D HashedMap = HashTiles->HashPattern(TileMap);
-
-	TArray<TArrayInt3D> HashedPatterns;
 	for (auto& Pattern : TilePatterns) {
 		if (Pattern != nullptr)
 		{
-			HashTiles->AddPattern(Pattern);
-			HashedPatterns.Add( HashTiles->HashPattern(Pattern) );
+			HashedPatterns.Add(HashTiles->HashPattern(Pattern));
 		}
 	}
 
 	// UE_LOG(LogTemp, Log, TEXT("Tile number: %d"), HashTiles->GetMaxIndex());
+}
 
+void UGenerationTileMapComponent::Generation()
+{
 	MakeTileMapEditable();
 
-	HashedMap = GenMap->Generation(HashedMap, HashedPatterns);
+	TArrayInt3D HashedMap = GenMap->Generation(DefaultHashedMap, HashedPatterns);
 
 	for (int l = 0; l < HashedMap.Num(); l++) {
 		auto Layer = HashedMap[l];
