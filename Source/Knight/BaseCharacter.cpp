@@ -128,6 +128,7 @@ void ABaseCharacter::DamageCharacter(int Damage)
 	}
 }
 
+
 void ABaseCharacter::EndHurt()
 {
 	SetAnimState(IdleState);
@@ -268,9 +269,70 @@ void ABaseCharacter::TouchStopped(const ETouchIndex::Type FingerIndex, const FVe
 	StopJumping();
 }
 
+bool ABaseCharacter::RequestMove(FVector Direct, float DistToWall, float DistToFloor) 
+{
+	FVector Location = GetActorLocation();
+	UWorld* World = GetWorld();
+
+	TArray<FOverlapResult> Overlaps;
+	ECollisionChannel Channel;
+	FCollisionResponseParams ResponseParams;
+	UCollisionProfile::GetChannelAndResponseParams(UCollisionProfile::BlockAll_ProfileName, Channel, ResponseParams);
+	FCollisionObjectQueryParams ObjectParams = FCollisionObjectQueryParams(FCollisionObjectQueryParams::InitType::AllStaticObjects);
+	FCollisionQueryParams Params(SCENE_QUERY_STAT(SphereOverlapComponents), false);
+
+	float SphereRadius = 10;
+	
+	FVector WallPos = Location +  FVector(Direct.GetSignVector().X * DistToWall, 0, 0);
+	bool IsFrontWall = World->OverlapMultiByObjectType(Overlaps, WallPos, FQuat::Identity, ObjectParams, FCollisionShape::MakeSphere(SphereRadius), Params);
+	
+	Overlaps.Empty();
+	FVector FloorPos = Location + FVector(Direct.GetSignVector().X * DistToWall, 0, -1 * DistToFloor);
+	bool IsFrontFloor = World->OverlapMultiByObjectType(Overlaps, FloorPos, FQuat::Identity, ObjectParams, FCollisionShape::MakeSphere(SphereRadius), Params);
+	
+	return (!IsFrontWall) && IsFrontFloor;
+}
+
+void ABaseCharacter::MoveTo(FVector Target, float Dist)
+{
+	FVector Location = GetActorLocation();
+	FVector Path = Target - Location;
+
+	FVector Direct;
+	float NowDist;
+	Path.ToDirectionAndLength(Direct, NowDist);
+
+	if (NowDist > Dist)
+	{
+		GetMovementComponent()->AddInputVector(Direct);
+	}
+}
+
+void ABaseCharacter::Attack()
+{
+}
+
 void ABaseCharacter::UpdateCharacter()
 {
 	UpdateAnimation();
 }
 
+void ABaseCharacter::ActionMoveTo(FVector Target, float Dist)
+{
+	MoveTo(Target, Dist);
+}
+
+void ABaseCharacter::ActionAttack()
+{
+	if (!IsAttack && !IsRollbackAttack) {
+		IsAttack = true;
+		Attack();
+	}
+		
+}
+
+void ABaseCharacter::EndAttack()
+{
+	IsAttack = false;
+}
 

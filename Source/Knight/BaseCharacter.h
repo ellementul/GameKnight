@@ -10,6 +10,7 @@
 #include "GameFramework/CharacterMovementComponent.h"
 #include "GameFramework/Controller.h"
 #include "Components/AudioComponent.h"
+#include "Kismet/KismetSystemLibrary.h"
 #include "BaseCharacter.generated.h"
 
 UENUM()
@@ -48,6 +49,8 @@ class ABaseCharacter : public APaperCharacter
 
 private:
 	TEnumAsByte<CharacterStatus> Status;
+	bool IsAttack = false;
+	
 
 protected:
 
@@ -55,6 +58,7 @@ protected:
 	virtual void Tick(float DeltaSeconds) override;
 
 	//Character Status
+	bool IsRollbackAttack = false;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Character Status")
 	float BeginTimer;
@@ -131,14 +135,28 @@ protected:
 	/** Handle touch stop event. */
 	void TouchStopped(const ETouchIndex::Type FingerIndex, const FVector Location);
 
+
 	// APawn interface
 	virtual void SetupPlayerInputComponent(class UInputComponent* InputComponent) override;
 	// End of APawn interface
+
+	virtual void MoveTo(FVector Target, float Dist);
+	virtual void Attack();
 
 
 public:
 	ABaseCharacter();
 
 	UFUNCTION(BlueprintCallable, Category = HealthAndDamage)
-		void DamageCharacter(int Damage);
+	void DamageCharacter(int Damage);
+
+	UFUNCTION(BlueprintCallable, Category = Character)
+	void ActionMoveTo(FVector Target, float Dist);
+
+	UFUNCTION(BlueprintCallable, Category = Character)
+	bool RequestMove(FVector Direct, float DistToWall, float DistToFloor);
+
+	UFUNCTION(BlueprintCallable, Category = Character)
+	void ActionAttack();
+	void EndAttack();
 };
