@@ -28,9 +28,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.69999999"
-     inkscape:cx="715.13405"
-     inkscape:cy="576.81914"
+     inkscape:zoom="0.49497474"
+     inkscape:cx="779.88693"
+     inkscape:cy="541.28277"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="true"
@@ -1041,7 +1041,7 @@
     </g>
     <g
        id="g1556"
-       transform="translate(0.4009043)">
+       transform="matrix(-1,0,0,1,68.409757,0.3779725)">
       <path
          class="fil7"
          d="m 32.941867,116.09148 c 6.002001,0 10.868002,4.8657 10.868002,10.868 0,6.0022 -4.866001,10.868 -10.868002,10.868 -6.002001,0 -10.868001,-4.8658 -10.868001,-10.868 0,-6.0023 4.866,-10.868 10.868001,-10.868 z"
