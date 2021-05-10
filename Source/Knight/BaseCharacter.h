@@ -11,6 +11,7 @@
 #include "GameFramework/CharacterMovementComponent.h"
 #include "GameFramework/Controller.h"
 #include "Components/AudioComponent.h"
+#include "Components/ArrowComponent.h"
 #include "Kismet/KismetSystemLibrary.h"
 #include "BaseCharacter.generated.h"
 
@@ -40,16 +41,13 @@ struct FAnimState {
 /**
  * Base class for characters
  */
-UCLASS(config = Game)
+UCLASS()
 class ABaseCharacter : public APaperCharacter
 {
 	GENERATED_BODY()
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Sound, meta = (AllowPrivateAccess = "true"))
 	class UAudioComponent* ActionSound;
-
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Damage, meta = (AllowPrivateAccess = "true"))
-	class USceneComponent* ShotPoint;
 
 private:
 	TEnumAsByte<CharacterStatus> Status;
@@ -109,8 +107,6 @@ protected:
 	virtual void MoveTo(FVector Target, float Dist);
 	virtual void Attack();
 
-	class TSubclassOf<APaperFlipbookActor> Bullet;
-
 	//Animation
 	/** Called to choose the correct animation to play based on the character's movement state */
 	void UpdateAnimation();
@@ -161,6 +157,12 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category = Character)
 	bool RequestMove(FVector Direct, float DistToWall, float DistToFloor);
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Character)
+	class TSubclassOf<APaperFlipbookActor> BulletClass;
+
+	UFUNCTION(BlueprintCallable, Category = Character)
+	void SpawnBullet(FVector RelativeLocation);
 
 	UFUNCTION(BlueprintCallable, Category = Character)
 	void ActionAttack();

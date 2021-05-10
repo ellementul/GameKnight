@@ -308,6 +308,18 @@ void ABaseCharacter::MoveTo(FVector Target, float Dist)
 	}
 }
 
+void ABaseCharacter::SpawnBullet(FVector RelativeLocation) {
+	UWorld* World = GetWorld();
+	UClass* SpawnClass = BulletClass.Get();
+
+	FVector Direct = GetSprite()->GetForwardVector();
+	FRotator RDirect = Direct.Rotation();
+	RelativeLocation.X = RelativeLocation.X * Direct.X;
+	const FVector Location = GetActorLocation() + RelativeLocation;
+	
+	World->SpawnActor(SpawnClass, &Location, &RDirect);
+}
+
 void ABaseCharacter::Attack()
 {
 }
