@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "PaperCharacter.h"
+#include "PaperFlipbookActor.h"
 #include "PaperFlipbookComponent.h"
 #include "Components/CapsuleComponent.h"
 #include "Components/InputComponent.h"
@@ -46,6 +47,9 @@ class ABaseCharacter : public APaperCharacter
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Sound, meta = (AllowPrivateAccess = "true"))
 	class UAudioComponent* ActionSound;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Damage, meta = (AllowPrivateAccess = "true"))
+	class USceneComponent* ShotPoint;
 
 private:
 	TEnumAsByte<CharacterStatus> Status;
@@ -102,6 +106,11 @@ protected:
 	void OnHurted();
 	virtual void OnHurted_Implementation();
 
+	virtual void MoveTo(FVector Target, float Dist);
+	virtual void Attack();
+
+	class TSubclassOf<APaperFlipbookActor> Bullet;
+
 	//Animation
 	/** Called to choose the correct animation to play based on the character's movement state */
 	void UpdateAnimation();
@@ -140,9 +149,6 @@ protected:
 	virtual void SetupPlayerInputComponent(class UInputComponent* InputComponent) override;
 	// End of APawn interface
 
-	virtual void MoveTo(FVector Target, float Dist);
-	virtual void Attack();
-
 
 public:
 	ABaseCharacter();
@@ -158,5 +164,6 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category = Character)
 	void ActionAttack();
+
 	void EndAttack();
 };

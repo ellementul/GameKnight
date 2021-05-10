@@ -4,7 +4,6 @@
 
 #include "CoreMinimal.h"
 #include "BaseCharacter.h"
-#include "BaseBullet.h"
 #include "BaseEnemyCharacter.generated.h"
 
 /**
@@ -29,9 +28,6 @@ protected:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Animations)
 	FAnimState JumpState;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Damaged)
-	TSubclassOf<ABaseBullet> BulletClass;
 
 public:
 
