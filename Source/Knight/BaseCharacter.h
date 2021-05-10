@@ -4,7 +4,15 @@
 
 #include "CoreMinimal.h"
 #include "PaperCharacter.h"
+#include "PaperFlipbookActor.h"
+#include "PaperFlipbookComponent.h"
+#include "Components/CapsuleComponent.h"
+#include "Components/InputComponent.h"
+#include "GameFramework/CharacterMovementComponent.h"
+#include "GameFramework/Controller.h"
 #include "Components/AudioComponent.h"
+#include "Components/ArrowComponent.h"
+#include "Kismet/KismetSystemLibrary.h"
 #include "BaseCharacter.generated.h"
 
 UENUM()
@@ -33,24 +41,18 @@ struct FAnimState {
 /**
  * Base class for characters
  */
-UCLASS(config = Game)
+UCLASS()
 class ABaseCharacter : public APaperCharacter
 {
 	GENERATED_BODY()
-
-	/** Side view camera */
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
-	class UCameraComponent* SideViewCameraComponent;
-
-	/** Camera boom positioning the camera beside the character */
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
-		class USpringArmComponent* CameraBoom;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Sound, meta = (AllowPrivateAccess = "true"))
 	class UAudioComponent* ActionSound;
 
 private:
 	TEnumAsByte<CharacterStatus> Status;
+	bool IsAttack = false;
+	
 
 protected:
 
@@ -58,6 +60,7 @@ protected:
 	virtual void Tick(float DeltaSeconds) override;
 
 	//Character Status
+	bool IsRollbackAttack = false;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Character Status")
 	float BeginTimer;
@@ -101,14 +104,18 @@ protected:
 	void OnHurted();
 	virtual void OnHurted_Implementation();
 
+	virtual void MoveTo(FVector Target, float Dist);
+	virtual void Attack();
+
 	//Animation
 	/** Called to choose the correct animation to play based on the character's movement state */
 	void UpdateAnimation();
 	virtual void UpdateAnimState();
 	virtual bool IsIdle();
 
-	bool IsWalk;
-	bool IsFall;
+	bool IsLeftDirect = false;
+	bool IsWalk       = false;
+	bool IsFall       = false;
 
 	void SetAnimState(FAnimState State, bool looping = true);
 
@@ -133,6 +140,7 @@ protected:
 	/** Handle touch stop event. */
 	void TouchStopped(const ETouchIndex::Type FingerIndex, const FVector Location);
 
+
 	// APawn interface
 	virtual void SetupPlayerInputComponent(class UInputComponent* InputComponent) override;
 	// End of APawn interface
@@ -141,11 +149,23 @@ protected:
 public:
 	ABaseCharacter();
 
-	/** Returns SideViewCameraComponent subobject **/
-	FORCEINLINE class UCameraComponent* GetSideViewCameraComponent() const { return SideViewCameraComponent; }
-	/** Returns CameraBoom subobject **/
-	FORCEINLINE class USpringArmComponent* GetCameraBoom() const { return CameraBoom; }
-
 	UFUNCTION(BlueprintCallable, Category = HealthAndDamage)
-		void DamageCharacter(int Damage);
+	void DamageCharacter(int Damage);
+
+	UFUNCTION(BlueprintCallable, Category = Character)
+	void ActionMoveTo(FVector Target, float Dist);
+
+	UFUNCTION(BlueprintCallable, Category = Character)
+	bool RequestMove(FVector Direct, float DistToWall, float DistToFloor);
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Character)
+	class TSubclassOf<APaperFlipbookActor> BulletClass;
+
+	UFUNCTION(BlueprintCallable, Category = Character)
+	void SpawnBullet(FVector RelativeLocation);
+
+	UFUNCTION(BlueprintCallable, Category = Character)
+	void ActionAttack();
+
+	void EndAttack();
 };

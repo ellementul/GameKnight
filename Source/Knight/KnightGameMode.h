@@ -12,7 +12,7 @@
  *
  * This game mode just sets the default pawn to be the MyCharacter asset, which is a subclass of KnightCharacter
  */
-UCLASS(minimalapi)
+UCLASS()
 class AKnightGameMode : public AGameModeBase
 {
 	GENERATED_BODY()

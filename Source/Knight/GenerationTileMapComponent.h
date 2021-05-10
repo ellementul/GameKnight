@@ -1,6 +1,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "PaperSpriteActor.h"
 #include "PaperTileSet.h"
 #include "PaperTileMap.h"
 #include "PaperTileMapComponent.h"
@@ -9,9 +10,34 @@
 
 #include "GenerationTileMapComponent.generated.h"
 
+class APaperSpriteActor;
 class UPaperTileMap;
 class UHashedTileSet;
 class UGeneretionHashMap;
+
+USTRUCT(BlueprintType)
+struct FActorBindTile {
+
+	GENERATED_BODY()
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	FPaperTileInfo Tile;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	class TSubclassOf<APaperSpriteActor> Actor;
+};
+
+USTRUCT(BlueprintType)
+struct FActorSpawning {
+
+	GENERATED_BODY()
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	class TSubclassOf<APaperSpriteActor> ClassActor;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	FVector Location;
+};
 
 /**
  * 
@@ -25,20 +51,38 @@ public:
 
 	UGenerationTileMapComponent();
 
-	UPROPERTY(Category = Setup, EditAnywhere, BlueprintReadWrite)
+	UPROPERTY(Category = Tiles, EditAnywhere, BlueprintReadWrite)
+		class UPaperTileMap* BeginTileMap;
+
+	UPROPERTY(Category = Tiles, EditAnywhere, BlueprintReadWrite)
 		TArray<UPaperTileMap*> TilePatterns;
 
-	UPROPERTY(Category = Setup, EditAnywhere, BlueprintReadWrite)
+	UPROPERTY(Category = Tiles, EditAnywhere, BlueprintReadWrite)
 		FPaperTileInfo ErrorTile;
 
-	UFUNCTION(BlueprintCallable, Category = "Sprite")
-		void Generation();
+	UPROPERTY(Category = TriggersAndCharacters, EditAnywhere, BlueprintReadWrite)
+		TArray<FActorBindTile> Triggers;
 
-	UFUNCTION(BlueprintCallable, Category = "Sprite")
-		void Clear();
+	UFUNCTION(BlueprintCallable, Category = Category = TriggersAndCharacters)
+	TArray<FActorSpawning> GetBindActors();
+
+	UFUNCTION(BlueprintCallable, Category = "TileMap")
+	void Build();
+
+	UFUNCTION(BlueprintCallable, Category = "TileMap")
+	void Generation();
+
+	UFUNCTION(BlueprintCallable, Category = "TileMap")
+	void Clear();
 
 private:
 	class UHashedTileSet* HashTiles;
 
 	class UGeneretionHashMap* GenMap;
+
+	class TSubclassOf<APaperSpriteActor> GetBindActor(FPaperTileInfo Tile);
+
+	TArrayInt3D         DefaultHashedMap;
+
+	TArray<TArrayInt3D> HashedPatterns;
 };

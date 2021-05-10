@@ -31,7 +31,7 @@ public:
 	struct FPaperTileInfo GetTile(int TileIndex);
 
 private:
-	TArray<FPaperTileInfo> TileSet;
+	TArray<FPaperTileInfo> HashTileSet;
 
 
 	int AddTile(FPaperTileInfo Tile);

@@ -8,31 +8,31 @@ using TArrayInt3D = TArray < TArray< TArray<int> > >;
 UGenerationTileMapComponent::UGenerationTileMapComponent(const FObjectInitializer& ObjectInitializer)
 	: Super(ObjectInitializer)
 {
+	HashTiles = CreateDefaultSubobject<UHashedTileSet>(TEXT("HashTiles"));
+	GenMap    = CreateDefaultSubobject<UGeneretionHashMap>(TEXT("GenMap"));
+
 	return;
 }
 
-void UGenerationTileMapComponent::Generation()
-{	
-	HashTiles = NewObject<UHashedTileSet>();
-	GenMap   = NewObject<UGeneretionHashMap>();
+void UGenerationTileMapComponent::Build()
+{
+	DefaultHashedMap = HashTiles->HashPattern(BeginTileMap);
 
-	HashTiles->AddPattern(TileMap);
-	TArrayInt3D HashedMap = HashTiles->HashPattern(TileMap);
-
-	TArray<TArrayInt3D> HashedPatterns;
 	for (auto& Pattern : TilePatterns) {
 		if (Pattern != nullptr)
 		{
-			HashTiles->AddPattern(Pattern);
-			HashedPatterns.Add( HashTiles->HashPattern(Pattern) );
+			HashedPatterns.Add(HashTiles->HashPattern(Pattern));
 		}
 	}
 
 	// UE_LOG(LogTemp, Log, TEXT("Tile number: %d"), HashTiles->GetMaxIndex());
+}
 
+void UGenerationTileMapComponent::Generation()
+{
 	MakeTileMapEditable();
 
-	HashedMap = GenMap->Generation(HashedMap, HashedPatterns);
+	TArrayInt3D HashedMap = GenMap->Generation(DefaultHashedMap, HashedPatterns);
 
 	for (int l = 0; l < HashedMap.Num(); l++) {
 		auto Layer = HashedMap[l];
@@ -56,6 +56,51 @@ void UGenerationTileMapComponent::Generation()
 	}
 
 	RebuildCollision();
+}
+
+TArray<FActorSpawning> UGenerationTileMapComponent::GetBindActors()
+{
+	TArray<FActorSpawning> Actors;
+
+	for (int l = 0; l < TileMap->TileLayers.Num(); l++) {
+
+		for (int x = 0; x < TileMap->MapWidth; x++) {
+
+			for (int y = 0; y < TileMap->MapHeight; y++) 
+			{
+				FPaperTileInfo Tile = TileMap->TileLayers[l]->GetCell(x, y);
+				UClass* ClassActor = GetBindActor(Tile);
+
+				if (ClassActor)
+				{
+					FActorSpawning ActorSpawning = FActorSpawning();
+					ActorSpawning.ClassActor = ClassActor;
+					ActorSpawning.Location   = TileMap->GetTilePositionInLocalSpace(x, y, l);
+					ActorSpawning.Location.X += TileMap->TileWidth / 2;
+					ActorSpawning.Location.Z -= TileMap->TileHeight / 2;
+
+					Actors.Add(ActorSpawning);
+
+					SetTile(x, y, l, FPaperTileInfo());
+				}
+			}
+		}
+	}
+
+	return Actors;
+}
+
+class TSubclassOf<APaperSpriteActor>  UGenerationTileMapComponent::GetBindActor(FPaperTileInfo Tile)
+{
+	for (auto& Trigger : Triggers)
+	{
+		if (Trigger.Tile == Tile)
+		{
+			return Trigger.Actor;	
+		}
+	}
+
+	return nullptr;
 }
 
 void UGenerationTileMapComponent::Clear()

@@ -7,7 +7,7 @@ AKnightPlayerStart::AKnightPlayerStart(const FObjectInitializer& ObjectInitializ
 	: Super(ObjectInitializer)
 {
 	SpawnLabel = CreateDefaultSubobject<UPaperSpriteComponent>(TEXT("SpawnLabel"));
-	SpawnLabel->SetCollisionProfileName("OverlapAll", true);
+	SpawnLabel->SetCollisionProfileName("OverlapAllDynamic", true);
 	SpawnLabel->SetupAttachment(RootComponent);
 }
 
