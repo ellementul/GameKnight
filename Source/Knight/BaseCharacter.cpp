@@ -212,7 +212,7 @@ void ABaseCharacter::UpdateAnimation()
 	}
 	else if(TravelDirection > 0.0f)
 	{
-		GetSprite()->SetRelativeRotation(FRotator(0.0f, 0.0f, 0.0f));
+		GetSprite()->SetRelativeRotation(FRotator(0.0f, 180.0f, 0.0f));
 		IsLeftDirect = false;
 	}
 
