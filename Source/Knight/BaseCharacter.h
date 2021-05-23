@@ -104,8 +104,10 @@ protected:
 	void OnHurted();
 	virtual void OnHurted_Implementation();
 
+	void SpawnBullet(FVector RelativeLocation);
+
 	virtual void MoveTo(FVector Target, float Dist);
-	virtual void Attack();
+	virtual void Attack(FVector RelativeBeginLocation);
 
 	//Animation
 	/** Called to choose the correct animation to play based on the character's movement state */
@@ -160,9 +162,6 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Character)
 	class TSubclassOf<APaperFlipbookActor> BulletClass;
-
-	UFUNCTION(BlueprintCallable, Category = Character)
-	void SpawnBullet(FVector RelativeLocation);
 
 	UFUNCTION(BlueprintCallable, Category = Character)
 	void ActionAttack();
