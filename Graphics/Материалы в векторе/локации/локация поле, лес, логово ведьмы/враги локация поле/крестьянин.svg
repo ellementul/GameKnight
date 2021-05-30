@@ -12,9 +12,9 @@
    viewBox="0 0 270.9333 270.9333"
    version="1.1"
    id="svg3565"
-   inkscape:version="1.0.2-2 (e86c870879, 2021-01-15)"
+   inkscape:version="1.0.1 (3bc2e813f5, 2020-09-07)"
    sodipodi:docname="крестьянин.svg"
-   inkscape:export-filename="C:\Users\Kolobok\Desktop\проекты\Рыцарь\knightframes.png"
+   inkscape:export-filename="C:\Users\79519\Desktop\Knight\GameKnight\Graphics\Render_png\fields\peasant.png"
    inkscape:export-xdpi="96.00001"
    inkscape:export-ydpi="96.00001">
   <title
@@ -28,9 +28,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.98994948"
-     inkscape:cx="273.21694"
-     inkscape:cy="450.3055"
+     inkscape:zoom="0.69999999"
+     inkscape:cx="422.78547"
+     inkscape:cy="548.1388"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="true"
@@ -41,7 +41,7 @@
      inkscape:window-width="1920"
      inkscape:window-height="1017"
      inkscape:window-x="-8"
-     inkscape:window-y="735"
+     inkscape:window-y="-8"
      inkscape:window-maximized="1">
     <inkscape:grid
        type="xygrid"
@@ -786,7 +786,7 @@
     </g>
     <g
        id="g1401"
-       transform="translate(82.285964,229.05357)">
+       transform="translate(82.285964,226.91542)">
       <path
          class="fil15"
          d="m 26.524281,-24.551249 v 0 c -1.40301,1.4024 -1.40301,3.6972 0,5.099601 l 2.93301,2.933699 c 1.40298,1.402302 3.698,1.4024 5.1,0 v 0 c 1.402,-1.4024 1.402,-3.6972 0,-5.0995 l -2.93401,-2.9338 c -1.40201,-1.4023 -3.697,-1.4023 -5.099,0 z"
@@ -935,7 +935,7 @@
     </g>
     <g
        id="g1432"
-       transform="translate(201.6503,229.05357)">
+       transform="translate(201.6503,225.04453)">
       <path
          class="fil15"
          d="m -30.043719,-26.061149 v 0 c 0,1.9833 1.62298,3.6059 3.60598,3.6059 h 4.14901 c 1.983,0 3.60601,-1.6226 3.60601,-3.6059 v 0 c 0,-1.9832 -1.62301,-3.6059 -3.60601,-3.6059 h -4.14901 c -1.983,0 -3.60598,1.6227 -3.60598,3.6059 z"
