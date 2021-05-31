@@ -1,0 +1,344 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="1024"
+   height="1024"
+   viewBox="0 0 270.9333 270.9333"
+   version="1.1"
+   id="svg3565"
+   inkscape:version="1.0.1 (3bc2e813f5, 2020-09-07)"
+   sodipodi:docname="monetka.svg"
+   inkscape:export-filename="C:\Users\79519\Desktop\Knight\GameKnight\Graphics\Render_png\Triggers\coin.png"
+   inkscape:export-xdpi="96.00001"
+   inkscape:export-ydpi="96.00001">
+  <title
+     id="title4661">Тайл размером 256x256</title>
+  <defs
+     id="defs3559" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.35"
+     inkscape:cx="-119.5078"
+     inkscape:cy="236.69893"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     showgrid="true"
+     units="px"
+     width="256px"
+     inkscape:snap-global="false"
+     inkscape:document-rotation="0"
+     inkscape:window-width="1920"
+     inkscape:window-height="1017"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1">
+    <inkscape:grid
+       type="xygrid"
+       id="grid5244"
+       units="px"
+       spacingx="67.73332"
+       spacingy="67.73332"
+       empspacing="1" />
+    <inkscape:grid
+       type="xygrid"
+       id="grid8949"
+       color="#e33fff"
+       opacity="0.1254902"
+       empcolor="#e33fff"
+       empopacity="0.2509804"
+       units="px"
+       spacingx="33.86666"
+       spacingy="33.86666"
+       empspacing="8" />
+  </sodipodi:namedview>
+  <metadata
+     id="metadata3562">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title>Тайл размером 256x256</dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,-26.0667)">
+    <g
+       id="_454723640"
+       style="clip-rule:evenodd;fill-rule:evenodd;image-rendering:optimizeQuality;shape-rendering:geometricPrecision;text-rendering:geometricPrecision"
+       transform="matrix(0.00463672,0,0,0.00463672,1138.1475,197.48313)">
+      <circle
+         style="fill:#edc919"
+         id="circle1110"
+         r="3714"
+         cy="-29764"
+         cx="-238318"
+         class="fil11" />
+      <path
+         style="fill:#ffff99"
+         inkscape:connector-curvature="0"
+         id="path1112"
+         d="m -237815,-33409 c 661,104 1264,385 1758,793 l -5006,5348 c -440,-467 -759,-1049 -907,-1697 l 4145,-4434 9,-10 z"
+         class="fil12" />
+      <path
+         style="fill:#e98a12"
+         inkscape:connector-curvature="0"
+         id="path1114"
+         d="m -238281,-33477 c 2051,0 3714,1663 3714,3714 0,2051 -1663,3714 -3714,3714 -64,0 -128,-2 -191,-5 1962,-99 3523,-1722 3523,-3709 0,-1987 -1560,-3610 -3523,-3709 63,-3 127,-5 191,-5 z"
+         class="fil13" />
+      <circle
+         style="fill:#ecb012"
+         id="circle1116"
+         r="2193"
+         cy="-29764"
+         cx="-238318"
+         class="fil14" />
+      <path
+         style="fill:#e88c0d"
+         inkscape:connector-curvature="0"
+         id="path1118"
+         d="m -238327,-31970 c 893,0 1661,534 2003,1299 -401,-447 -984,-728 -1632,-728 -1211,0 -2193,982 -2193,2193 0,318 68,620 190,893 -349,-388 -561,-901 -561,-1464 0,-1211 982,-2193 2193,-2193 z"
+         class="fil15" />
+    </g>
+    <g
+       id="_454722224"
+       style="clip-rule:evenodd;fill-rule:evenodd;image-rendering:optimizeQuality;shape-rendering:geometricPrecision;text-rendering:geometricPrecision"
+       transform="matrix(0.00463672,0,0,0.00463672,1153.1146,197.48313)">
+      <ellipse
+         style="fill:#edc919"
+         id="ellipse1121"
+         ry="3714"
+         rx="3515"
+         cy="-29764"
+         cx="-226538"
+         class="fil11" />
+      <path
+         style="fill:#ffff99"
+         inkscape:connector-curvature="0"
+         id="path1123"
+         d="m -225967,-33422 c 616,104 1179,377 1645,773 -564,607 -3967,4858 -4585,5624 -439,-429 -775,-974 -963,-1590 l 3902,-4806 z"
+         class="fil12" />
+      <path
+         style="fill:#e98a12"
+         inkscape:connector-curvature="0"
+         id="path1125"
+         d="m -223033,-29768 c 0,2061 -1574,3732 -3515,3732 -286,0 -565,-37 -831,-105 1941,-1 3514,-1823 3514,-3732 0,-1909 -1145,-3208 -2685,-3604 2010,-34 3517,1775 3517,3709 z"
+         class="fil13" />
+      <ellipse
+         style="fill:#e8b10e"
+         id="ellipse1127"
+         ry="2275"
+         rx="2016"
+         cy="-29805"
+         cx="-226888"
+         class="fil16" />
+      <path
+         style="fill:#e98a12"
+         inkscape:connector-curvature="0"
+         id="path1129"
+         d="m -226878,-32080 c 786,0 1468,509 1800,1250 -271,-153 -576,-239 -900,-239 -1113,0 -2016,1019 -2016,2275 0,369 78,717 216,1025 -661,-373 -1116,-1145 -1116,-2036 0,-1257 902,-2275 2016,-2275 z"
+         class="fil13" />
+    </g>
+    <g
+       id="_415911064"
+       style="clip-rule:evenodd;fill-rule:evenodd;image-rendering:optimizeQuality;shape-rendering:geometricPrecision;text-rendering:geometricPrecision"
+       transform="matrix(0.00463672,0,0,0.00463672,1162.186,197.48313)">
+      <ellipse
+         style="fill:#edc919"
+         id="ellipse1132"
+         ry="3508"
+         rx="1945"
+         cy="-29742"
+         cx="-214275"
+         class="fil11" />
+      <path
+         style="fill:#e98a12"
+         inkscape:connector-curvature="0"
+         id="path1134"
+         d="m -213231,-33240 c -779,0 -25,0 -957,-6 1025,414 1858,1945 1858,3586 0,1641 -887,3012 -1911,3426 1377,2 598,2 1377,2 779,0 1528,-1854 1528,-3823 0,-1968 -1115,-3185 -1894,-3185 z"
+         class="fil13" />
+      <path
+         style="fill:#ffff99"
+         inkscape:connector-curvature="0"
+         id="path1136"
+         d="m -214107,-33199 c 427,113 807,499 1089,1062 l -2494,5151 c -325,-481 -563,-1162 -661,-1945 l 2066,-4267 z"
+         class="fil12" />
+      <ellipse
+         style="fill:#e8b10e"
+         id="ellipse1138"
+         ry="2260"
+         rx="1253"
+         cy="-29742"
+         cx="-214275"
+         class="fil16" />
+      <path
+         style="fill:#e98a12"
+         inkscape:connector-curvature="0"
+         id="path1140"
+         d="m -214272,-32010 c 389,0 736,319 966,820 -164,-141 -347,-220 -540,-220 -692,0 -1253,1012 -1253,2260 0,547 108,1049 287,1440 -422,-364 -713,-1140 -713,-2040 0,-1248 561,-2260 1253,-2260 z"
+         class="fil13" />
+    </g>
+    <g
+       id="_415910200"
+       style="clip-rule:evenodd;fill-rule:evenodd;image-rendering:optimizeQuality;shape-rendering:geometricPrecision;text-rendering:geometricPrecision"
+       transform="matrix(0.00463672,0,0,0.00463672,1166.3437,197.48313)">
+      <rect
+         style="fill:#e98a12"
+         id="rect1143"
+         ry="412"
+         rx="531"
+         height="7362"
+         width="1742"
+         y="-33406"
+         x="-201300"
+         class="fil13" />
+      <rect
+         style="fill:#f0ab22"
+         id="rect1145"
+         height="1231"
+         width="1738"
+         y="-32734"
+         x="-201296"
+         class="fil17" />
+      <rect
+         style="fill:#f6780a"
+         id="rect1147"
+         height="1231"
+         width="1738"
+         y="-27882"
+         x="-201296"
+         class="fil18" />
+    </g>
+    <g
+       id="_415908784"
+       style="clip-rule:evenodd;fill-rule:evenodd;image-rendering:optimizeQuality;shape-rendering:geometricPrecision;text-rendering:geometricPrecision"
+       transform="matrix(0.00463672,0,0,0.00463672,931.07943,265.17886)">
+      <circle
+         style="fill:#edc919"
+         id="circle1150"
+         r="3714"
+         cy="-29935"
+         cx="-164244"
+         class="fil11" />
+      <path
+         style="fill:#ffff99"
+         inkscape:connector-curvature="0"
+         id="path1152"
+         d="m -164747,-33581 c -661,104 -1264,385 -1758,793 l 5006,5348 c 440,-467 759,-1049 907,-1697 l -4145,-4434 -9,-10 z"
+         class="fil12" />
+      <path
+         style="fill:#e98a12"
+         inkscape:connector-curvature="0"
+         id="path1154"
+         d="m -164281,-33649 c -2051,0 -3714,1663 -3714,3714 0,2051 1663,3714 3714,3714 64,0 128,-2 191,-5 -1962,-99 -3523,-1722 -3523,-3709 0,-1987 1560,-3610 3523,-3709 -63,-3 -127,-5 -191,-5 z"
+         class="fil13" />
+      <circle
+         style="fill:#ecb012"
+         id="circle1156"
+         r="2193"
+         cy="-29935"
+         cx="-164244"
+         class="fil14" />
+      <path
+         style="fill:#e88c0d"
+         inkscape:connector-curvature="0"
+         id="path1158"
+         d="m -164235,-32141 c -893,0 -1661,534 -2003,1299 401,-447 984,-728 1632,-728 1211,0 2193,982 2193,2193 0,318 -68,620 -190,893 349,-388 561,-901 561,-1464 0,-1211 -982,-2193 -2193,-2193 z"
+         class="fil15" />
+    </g>
+    <g
+       id="_415907368"
+       style="clip-rule:evenodd;fill-rule:evenodd;image-rendering:optimizeQuality;shape-rendering:geometricPrecision;text-rendering:geometricPrecision"
+       transform="matrix(0.00463672,0,0,0.00463672,919.85411,265.17886)">
+      <ellipse
+         style="fill:#edc919"
+         id="ellipse1161"
+         ry="3714"
+         rx="3515"
+         cy="-29764"
+         cx="-176508"
+         class="fil11" />
+      <path
+         style="fill:#ffff99"
+         inkscape:connector-curvature="0"
+         id="path1163"
+         d="m -177078,-33422 c -616,104 -1179,377 -1645,773 564,607 3967,4858 4585,5624 439,-429 775,-974 963,-1590 l -3902,-4806 z"
+         class="fil12" />
+      <path
+         style="fill:#e98a12"
+         inkscape:connector-curvature="0"
+         id="path1165"
+         d="m -180013,-29768 c 0,2061 1574,3732 3515,3732 286,0 565,-37 831,-105 -1941,-1 -3514,-1823 -3514,-3732 0,-1909 1145,-3208 2685,-3604 -2010,-34 -3517,1775 -3517,3709 z"
+         class="fil13" />
+      <ellipse
+         style="fill:#e8b10e"
+         id="ellipse1167"
+         ry="2275"
+         rx="2016"
+         cy="-29805"
+         cx="-176158"
+         class="fil16" />
+      <path
+         style="fill:#e98a12"
+         inkscape:connector-curvature="0"
+         id="path1169"
+         d="m -176167,-32080 c -786,0 -1468,509 -1800,1250 271,-153 576,-239 900,-239 1113,0 2016,1019 2016,2275 0,369 -78,717 -216,1025 661,-373 1116,-1145 1116,-2036 0,-1257 -902,-2275 -2016,-2275 z"
+         class="fil13" />
+    </g>
+    <g
+       id="_415905952"
+       style="clip-rule:evenodd;fill-rule:evenodd;image-rendering:optimizeQuality;shape-rendering:geometricPrecision;text-rendering:geometricPrecision"
+       transform="matrix(0.00463672,0,0,0.00463672,909.69787,265.17886)">
+      <ellipse
+         style="fill:#edc919"
+         id="ellipse1172"
+         ry="3508"
+         rx="1945"
+         cy="-29604"
+         cx="-188925"
+         class="fil11" />
+      <path
+         style="fill:#e98a12"
+         inkscape:connector-curvature="0"
+         id="path1174"
+         d="m -189968,-33102 c 779,0 25,0 957,-6 -1025,414 -1858,1945 -1858,3586 0,1641 887,3012 1911,3426 -1377,2 -598,2 -1377,2 -779,0 -1528,-1854 -1528,-3823 0,-1968 1115,-3185 1894,-3185 z"
+         class="fil13" />
+      <path
+         style="fill:#ffff99"
+         inkscape:connector-curvature="0"
+         id="path1176"
+         d="m -189093,-33061 c -427,113 -807,499 -1089,1062 l 2494,5151 c 325,-481 563,-1162 661,-1945 l -2066,-4267 z"
+         class="fil12" />
+      <ellipse
+         style="fill:#e8b10e"
+         id="ellipse1178"
+         ry="2260"
+         rx="1253"
+         cy="-29604"
+         cx="-188925"
+         class="fil16" />
+      <path
+         style="fill:#e98a12"
+         inkscape:connector-curvature="0"
+         id="path1180"
+         d="m -188927,-31872 c -389,0 -736,319 -966,820 164,-141 347,-220 540,-220 692,0 1253,1012 1253,2260 0,547 -108,1049 -287,1440 422,-364 713,-1140 713,-2040 0,-1248 -561,-2260 -1253,-2260 z"
+         class="fil13" />
+    </g>
+  </g>
+</svg>
