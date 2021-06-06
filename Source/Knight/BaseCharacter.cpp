@@ -147,7 +147,7 @@ void ABaseCharacter::KillCharacter()
 
 		SetAnimState(KillState, false);
 		GetCapsuleComponent()->SetCollisionProfileName("OverlapAll");
-		GetCapsuleComponent()->UpdateCollisionProfile();
+		// GetCapsuleComponent()->UpdateCollisionProfile();
 	}
 }
 
