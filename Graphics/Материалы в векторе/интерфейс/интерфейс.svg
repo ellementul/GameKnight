@@ -29,9 +29,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.24748737"
-     inkscape:cx="-257.81583"
-     inkscape:cy="839.41511"
+     inkscape:zoom="0.49497474"
+     inkscape:cx="133.11487"
+     inkscape:cy="400.3264"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="true"
@@ -82,7 +82,10 @@
      transform="translate(0,-26.0667)">
     <g
        id="g2448"
-       transform="translate(-20.847023,1.0583333)">
+       transform="translate(110.64959,-57.206423)"
+       inkscape:export-filename="C:\Users\Proger\Desktop\GameKnight\Graphics\Render_png\UI\RightButton.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96">
       <rect
          style="fill:#b18b5c;fill-opacity:1;stroke-width:0.131263"
          id="rect967"
@@ -140,7 +143,10 @@
     </g>
     <g
        id="g1515-5"
-       transform="matrix(-0.47548185,0,0,0.47548185,63.208737,182.62151)">
+       transform="matrix(-0.47548185,0,0,0.47548185,153.54584,124.89129)"
+       inkscape:export-filename="C:\Users\Proger\Desktop\GameKnight\Graphics\Render_png\UI\RightButton.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96">
       <rect
          style="fill:#b18b5c;fill-opacity:1;stroke-width:0.276064"
          id="rect967-7"
@@ -963,10 +969,10 @@
        id="rect16811"
        width="128.9467"
        height="42.982239"
-       x="138.91875"
-       y="36.737011"
+       x="136.24605"
+       y="-68.567184"
        ry="15.789392"
-       inkscape:export-filename="C:\Users\79519\Desktop\пример.png"
+       inkscape:export-filename="C:\Users\Proger\Desktop\GameKnight\Graphics\Render_png\UI\CountCoins.png"
        inkscape:export-xdpi="96"
        inkscape:export-ydpi="96" />
     <rect
@@ -974,25 +980,51 @@
        id="rect16910"
        width="118.40219"
        height="36.159313"
-       x="144.19102"
-       y="40.148289"
+       x="141.51833"
+       y="-65.155907"
        ry="13.283012"
-       inkscape:export-filename="C:\Users\79519\Desktop\пример.png"
+       inkscape:export-filename="C:\Users\Proger\Desktop\GameKnight\Graphics\Render_png\UI\CountCoins.png"
        inkscape:export-xdpi="96"
        inkscape:export-ydpi="96" />
-    <text
-       xml:space="preserve"
-       style="font-size:26.7138px;line-height:1.25;font-family:sans-serif;clip-rule:evenodd;fill:#b18b5c;fill-opacity:1;fill-rule:evenodd;stroke-width:0.139134;image-rendering:optimizeQuality;shape-rendering:geometricPrecision;text-rendering:geometricPrecision"
-       x="217.80057"
-       y="70.070328"
-       id="text16914"
-       inkscape:export-filename="C:\Users\79519\Desktop\пример.png"
+    <g
+       id="_454723640"
+       style="clip-rule:evenodd;fill-rule:evenodd;image-rendering:optimizeQuality;shape-rendering:geometricPrecision;text-rendering:geometricPrecision"
+       transform="matrix(0.00843184,0,0,0.00843184,2322.8104,201.32219)"
+       inkscape:export-filename="C:\Users\Proger\Desktop\GameKnight\Graphics\Render_png\UI\coin.png"
        inkscape:export-xdpi="96"
-       inkscape:export-ydpi="96"><tspan
-         sodipodi:role="line"
-         id="tspan16912"
-         x="217.80057"
-         y="70.070328"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:mr_CoasterG;-inkscape-font-specification:mr_CoasterG;fill:#b18b5c;fill-opacity:1;stroke-width:0.139134">123</tspan></text>
+       inkscape:export-ydpi="96">
+      <circle
+         style="fill:#edc919"
+         id="circle1110"
+         r="3714"
+         cy="-29764"
+         cx="-238318"
+         class="fil11" />
+      <path
+         style="fill:#ffff99"
+         inkscape:connector-curvature="0"
+         id="path1112"
+         d="m -237815,-33409 c 661,104 1264,385 1758,793 l -5006,5348 c -440,-467 -759,-1049 -907,-1697 l 4145,-4434 9,-10 z"
+         class="fil12" />
+      <path
+         style="fill:#e98a12"
+         inkscape:connector-curvature="0"
+         id="path1114"
+         d="m -238281,-33477 c 2051,0 3714,1663 3714,3714 0,2051 -1663,3714 -3714,3714 -64,0 -128,-2 -191,-5 1962,-99 3523,-1722 3523,-3709 0,-1987 -1560,-3610 -3523,-3709 63,-3 127,-5 191,-5 z"
+         class="fil13" />
+      <circle
+         style="fill:#ecb012"
+         id="circle1116"
+         r="2193"
+         cy="-29764"
+         cx="-238318"
+         class="fil14" />
+      <path
+         style="fill:#e88c0d"
+         inkscape:connector-curvature="0"
+         id="path1118"
+         d="m -238327,-31970 c 893,0 1661,534 2003,1299 -401,-447 -984,-728 -1632,-728 -1211,0 -2193,982 -2193,2193 0,318 68,620 190,893 -349,-388 -561,-901 -561,-1464 0,-1211 982,-2193 2193,-2193 z"
+         class="fil15" />
+    </g>
   </g>
 </svg>
