@@ -13,8 +13,6 @@ UCLASS()
 class KNIGHT_API ABaseEnemyCharacter : public ABaseCharacter
 {
 	GENERATED_BODY()
-
-	ABaseEnemyCharacter();
 	
 protected:
 
@@ -31,5 +29,5 @@ protected:
 
 public:
 
-	virtual void Attack() override;
+	virtual void Attack(FVector RelativeBeginLocation) override;
 };

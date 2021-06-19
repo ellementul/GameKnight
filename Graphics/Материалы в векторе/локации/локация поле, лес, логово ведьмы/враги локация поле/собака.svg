@@ -14,7 +14,7 @@
    id="svg3565"
    inkscape:version="1.0.1 (3bc2e813f5, 2020-09-07)"
    sodipodi:docname="собака.svg"
-   inkscape:export-filename="C:\Users\Kolobok\Desktop\проекты\Рыцарь\knightframes.png"
+   inkscape:export-filename="C:\Users\79519\Desktop\Knight\GameKnight\Graphics\Render_png\fields\dog.png"
    inkscape:export-xdpi="96.00001"
    inkscape:export-ydpi="96.00001">
   <title
@@ -29,8 +29,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.49497475"
-     inkscape:cx="522.92841"
-     inkscape:cy="105.23064"
+     inkscape:cx="280.17693"
+     inkscape:cy="-189.94496"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="true"
@@ -67,6 +67,10 @@
        position="104.10147,292.98303"
        orientation="0,-1"
        id="guide1402" />
+    <sodipodi:guide
+       position="67.090766,208.66173"
+       orientation="0,-1"
+       id="guide1066" />
   </sodipodi:namedview>
   <metadata
      id="metadata3562">
@@ -399,7 +403,7 @@
     </g>
     <g
        id="g1344"
-       transform="translate(0,2.8348215)">
+       transform="translate(6.0977321,2.8348215)">
       <path
          class="fil0"
          d="m 110.00278,63.489112 v 0 c 1.57901,0.7496 3.48501,0.0708 4.234,-1.5087 l 2.121,-4.467101 c 0.74901,-1.5794 0.07,-3.4851 -1.509,-4.2347 v 0 c -1.579,-0.749701 -3.485,-0.0708 -4.235,1.5086 l -2.12,4.4672 c -0.75,1.5794 -0.071,3.485001 1.509,4.234701 z"
@@ -1093,7 +1097,7 @@
     </g>
     <g
        id="g1549"
-       transform="translate(250.51419,217.90518)">
+       transform="translate(250.51419,218.17245)">
       <path
          class="fil0"
          d="m -95.682128,-0.07402991 v 0 c -1.57898,-0.7497 -3.48498,-0.0709 -4.235,1.50860101 l -2.120002,4.467101 c -0.74999,1.579499 -0.071,3.485099 1.509,4.2347989 v 0 c 1.579012,0.749699 3.485012,0.0708 4.234022,-1.5085989 l 2.12098,-4.467201 c 0.74901,-1.579401 0.071,-3.48500201 -1.509,-4.23470101 z"

@@ -3,10 +3,6 @@
 
 #include "BaseEnemyCharacter.h"
 
-ABaseEnemyCharacter::ABaseEnemyCharacter() {
-
-}
-
 void ABaseEnemyCharacter::UpdateAnimState()
 {
 
@@ -33,7 +29,7 @@ bool ABaseEnemyCharacter::Damaged(int Damage)
 	return (Health != OldHealth);
 }
 
-void ABaseEnemyCharacter::Attack()
+void ABaseEnemyCharacter::Attack(FVector RelativeBeginLocation)
 {
-
+	SpawnBullet(RelativeBeginLocation);
 }

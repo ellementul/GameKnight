@@ -147,7 +147,7 @@ void ABaseCharacter::KillCharacter()
 
 		SetAnimState(KillState, false);
 		GetCapsuleComponent()->SetCollisionProfileName("OverlapAll");
-		GetCapsuleComponent()->UpdateCollisionProfile();
+		// GetCapsuleComponent()->UpdateCollisionProfile();
 	}
 }
 
@@ -316,12 +316,15 @@ void ABaseCharacter::SpawnBullet(FVector RelativeLocation) {
 	FRotator RDirect = Direct.Rotation();
 	RelativeLocation.X = RelativeLocation.X * Direct.X;
 	const FVector Location = GetActorLocation() + RelativeLocation;
+	FActorSpawnParameters ActorSpawnParameters = FActorSpawnParameters();
+	ActorSpawnParameters.Owner = this;
 	
-	World->SpawnActor(SpawnClass, &Location, &RDirect);
+	World->SpawnActor(SpawnClass, &Location, &RDirect, ActorSpawnParameters);
 }
 
-void ABaseCharacter::Attack()
+void ABaseCharacter::Attack(FVector RelativeBeginLocation)
 {
+	SpawnBullet(RelativeBeginLocation);
 }
 
 void ABaseCharacter::UpdateCharacter()
@@ -336,11 +339,7 @@ void ABaseCharacter::ActionMoveTo(FVector Target, float Dist)
 
 void ABaseCharacter::ActionAttack()
 {
-	if (!IsAttack && !IsRollbackAttack) {
-		IsAttack = true;
-		Attack();
-	}
-		
+	Attack(FVector(50, 0, 0));
 }
 
 void ABaseCharacter::EndAttack()

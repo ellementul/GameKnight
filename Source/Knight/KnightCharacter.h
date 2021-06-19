@@ -51,6 +51,8 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Animations)
 	FAnimState JumpState;
 
+	virtual void Attack(FVector RelativeBeginLocation) override;
+
 public:
 
 	/** Returns SideViewCameraComponent subobject **/
