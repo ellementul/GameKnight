@@ -52,6 +52,7 @@ class ABaseCharacter : public APaperCharacter
 private:
 	TEnumAsByte<CharacterStatus> Status;
 	bool IsAttack = false;
+	float DefaultSpeed;
 	
 
 protected:
@@ -150,6 +151,12 @@ protected:
 
 public:
 	ABaseCharacter();
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Character)
+	bool IsRunning;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Character)
+	float BoostRunning = 2;
 
 	UFUNCTION(BlueprintCallable, Category = HealthAndDamage)
 	void DamageCharacter(int Damage);

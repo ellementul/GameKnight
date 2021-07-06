@@ -59,11 +59,25 @@ void ABaseCharacter::BeginPlay()
 
 	Super::BeginPlay();
 
+	DefaultSpeed = GetCharacterMovement()->MaxWalkSpeed;
+
 	DisableInput(GetController<APlayerController>());
 
 	SetAnimState(IdleState);
 
 	GetWorldTimerManager().SetTimer(BeginTimerHandle, this, &ABaseCharacter::ActiveCharacter, BeginTimer);
+}
+
+void ABaseCharacter::Tick(float DeltaSeconds)
+{
+	Super::Tick(DeltaSeconds);
+
+	if (IsRunning)
+		GetCharacterMovement()->MaxWalkSpeed = DefaultSpeed * BoostRunning;
+	else
+		GetCharacterMovement()->MaxWalkSpeed = DefaultSpeed;
+
+	UpdateAnimation();
 }
 
 
@@ -233,13 +247,6 @@ bool ABaseCharacter::IsIdle()
 	return true;
 }
 
-void ABaseCharacter::Tick(float DeltaSeconds)
-{
-	Super::Tick(DeltaSeconds);
-
-	UpdateCharacter();
-}
-
 
 //////////////////////////////////////////////////////////////////////////
 // Input
@@ -325,11 +332,6 @@ void ABaseCharacter::SpawnBullet(FVector RelativeLocation) {
 void ABaseCharacter::Attack(FVector RelativeBeginLocation)
 {
 	SpawnBullet(RelativeBeginLocation);
-}
-
-void ABaseCharacter::UpdateCharacter()
-{
-	UpdateAnimation();
 }
 
 void ABaseCharacter::ActionMoveTo(FVector Target, float Dist)
