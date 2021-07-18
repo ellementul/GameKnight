@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "BaseCharacter.h"
+#include "LaunchAimInterface.h"
 #include "BaseEnemyCharacter.generated.h"
 
 /**
@@ -29,5 +30,8 @@ protected:
 
 public:
 
-	virtual void Attack(FVector RelativeBeginLocation) override;
+	virtual void Attack(FVector Target) override;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Character)
+	float SeeEnemyDistance = 150;
 };

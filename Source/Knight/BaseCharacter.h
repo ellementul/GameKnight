@@ -52,9 +52,13 @@ class ABaseCharacter : public APaperCharacter
 private:
 	TEnumAsByte<CharacterStatus> Status;
 	bool IsAttack = false;
+	float DefaultSpeed;
 	
 
 protected:
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Hit, meta = (AllowPrivateAccess = "true"))
+	class UArrowComponent* DirAttack;
 
 	virtual void BeginPlay() override;
 	virtual void Tick(float DeltaSeconds) override;
@@ -104,10 +108,10 @@ protected:
 	void OnHurted();
 	virtual void OnHurted_Implementation();
 
-	void SpawnBullet(FVector RelativeLocation);
+	APaperFlipbookActor* SpawnBullet(FVector RelativeLocation);
 
 	virtual void MoveTo(FVector Target, float Dist);
-	virtual void Attack(FVector RelativeBeginLocation);
+	virtual void Attack(FVector Target);
 
 	//Animation
 	/** Called to choose the correct animation to play based on the character's movement state */
@@ -151,6 +155,12 @@ protected:
 public:
 	ABaseCharacter();
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Character)
+	bool IsRunning;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Character)
+	float BoostRunning = 2;
+
 	UFUNCTION(BlueprintCallable, Category = HealthAndDamage)
 	void DamageCharacter(int Damage);
 
@@ -164,7 +174,7 @@ public:
 	class TSubclassOf<APaperFlipbookActor> BulletClass;
 
 	UFUNCTION(BlueprintCallable, Category = Character)
-	void ActionAttack();
+	void ActionAttack(FVector Target);
 
 	void EndAttack();
 };

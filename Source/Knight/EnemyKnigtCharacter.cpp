@@ -9,6 +9,12 @@ AEnemyKnigtCharacter::AEnemyKnigtCharacter()
 	CheckHitEnemyCollision->SetupAttachment(GetSprite());
 }
 
+void AEnemyKnigtCharacter::BeginPlay() {
+	Super::BeginPlay();
+
+	CheckHitEnemyCollision->SetWorldLocation(DirAttack->GetComponentLocation());
+}
+
 bool AEnemyKnigtCharacter::CheckHitEnemy()
 {
 	TArray<AActor*> OverlappingActors;

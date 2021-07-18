@@ -111,11 +111,6 @@ bool AKnightCharacter::Damaged(int Damage)
 	return (Health != OldHealth);
 }
 
-void AKnightCharacter::Attack(FVector RelativeBeginLocation)
-{
-	SpawnBullet(RelativeBeginLocation);
-}
-
 void AKnightCharacter::BeginSpeak()
 {
 	IsSpeak = true;

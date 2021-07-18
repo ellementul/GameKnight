@@ -29,7 +29,13 @@ bool ABaseEnemyCharacter::Damaged(int Damage)
 	return (Health != OldHealth);
 }
 
-void ABaseEnemyCharacter::Attack(FVector RelativeBeginLocation)
+void ABaseEnemyCharacter::Attack(FVector Target = FVector::ZeroVector)
 {
-	SpawnBullet(RelativeBeginLocation);
+	FVector BeginLocation = DirAttack->GetComponentLocation();
+	ILaunchAimInterface* Bullet = Cast<ILaunchAimInterface>(SpawnBullet(BeginLocation));
+
+	if (!Target.IsZero() && Bullet) {
+		Bullet->LaunchAim(Target);
+	}
+
 }
