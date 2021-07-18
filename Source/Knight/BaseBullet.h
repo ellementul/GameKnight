@@ -6,6 +6,7 @@
 #include "PaperFlipbookActor.h"
 #include "KnightCharacter.h"
 #include "BaseEnemyCharacter.h"
+#include "LaunchAimInterface.h"
 #include "GameFramework/ProjectileMovementComponent.h"
 #include "BaseBullet.generated.h"
 
@@ -13,7 +14,7 @@
  * 
  */
 UCLASS()
-class KNIGHT_API ABaseBullet : public APaperFlipbookActor
+class KNIGHT_API ABaseBullet : public APaperFlipbookActor, public ILaunchAimInterface
 {
 	GENERATED_BODY()
 
@@ -21,6 +22,8 @@ class KNIGHT_API ABaseBullet : public APaperFlipbookActor
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Sound, meta = (AllowPrivateAccess = "true"))
 	class UProjectileMovementComponent* Movement;
+
+	float OneTileSpeed = 128;
 
 protected:
 	virtual void BeginPlay() override;
@@ -34,8 +37,16 @@ protected:
 
 public:
 
+	virtual void LaunchAim(FVector Target) override;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Bullet)
+	float IsGravity = false;
+
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Bullet)
 	float Speed;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = HealthAndDamage)
+	float LaunchForce = 1000;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Bullet)
 	float LifeTime = 1.0;

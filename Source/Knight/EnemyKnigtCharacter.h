@@ -21,6 +21,9 @@ class KNIGHT_API AEnemyKnigtCharacter : public ABaseEnemyCharacter
 	class USphereComponent* CheckHitEnemyCollision;
 
 public:
+
+	virtual void BeginPlay() override;
+
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Hit)
 	TSubclassOf<AActor> EnemyClass;
 

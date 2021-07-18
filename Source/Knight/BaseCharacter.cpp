@@ -41,6 +41,9 @@ ABaseCharacter::ABaseCharacter()
 	ActionSound = CreateDefaultSubobject<UAudioComponent>(TEXT("ActionSound"));
 	ActionSound->SetupAttachment(RootComponent);
 
+	DirAttack = CreateDefaultSubobject<UArrowComponent>(TEXT("DirAttack"));
+	DirAttack->SetupAttachment(GetSprite());
+
 	Status = CharacterStatus::NONE;
 	BeginTimer = 1.0;
 	HurtTimer = 1.0;
@@ -315,23 +318,23 @@ void ABaseCharacter::MoveTo(FVector Target, float Dist)
 	}
 }
 
-void ABaseCharacter::SpawnBullet(FVector RelativeLocation) {
+APaperFlipbookActor* ABaseCharacter::SpawnBullet(FVector Location) {
 	UWorld* World = GetWorld();
 	UClass* SpawnClass = BulletClass.Get();
 
 	FVector Direct = GetSprite()->GetForwardVector();
 	FRotator RDirect = Direct.Rotation();
-	RelativeLocation.X = RelativeLocation.X * Direct.X;
-	const FVector Location = GetActorLocation() + RelativeLocation;
+
 	FActorSpawnParameters ActorSpawnParameters = FActorSpawnParameters();
 	ActorSpawnParameters.Owner = this;
-	
-	World->SpawnActor(SpawnClass, &Location, &RDirect, ActorSpawnParameters);
+
+	return Cast<APaperFlipbookActor>(World->SpawnActor(SpawnClass, &Location, &RDirect, ActorSpawnParameters));
 }
 
-void ABaseCharacter::Attack(FVector RelativeBeginLocation)
+void ABaseCharacter::Attack(FVector Target = FVector(0, 0, 0))
 {
-	SpawnBullet(RelativeBeginLocation);
+	FVector BeginLocation = DirAttack->GetComponentLocation();
+	SpawnBullet(BeginLocation);
 }
 
 void ABaseCharacter::ActionMoveTo(FVector Target, float Dist)
@@ -339,9 +342,9 @@ void ABaseCharacter::ActionMoveTo(FVector Target, float Dist)
 	MoveTo(Target, Dist);
 }
 
-void ABaseCharacter::ActionAttack()
+void ABaseCharacter::ActionAttack(FVector Target = FVector::ZeroVector)
 {
-	Attack(FVector(50, 0, 0));
+	Attack(Target);
 }
 
 void ABaseCharacter::EndAttack()
