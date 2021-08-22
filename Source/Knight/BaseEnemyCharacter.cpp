@@ -21,7 +21,7 @@ void ABaseEnemyCharacter::UpdateAnimState()
 
 bool ABaseEnemyCharacter::IsIdle()
 {
-	return !(IsWalk || IsFall);
+	return !(IsWalk || IsFall || IsSpeak);
 }
 
 bool ABaseEnemyCharacter::Damaged(int Damage)
