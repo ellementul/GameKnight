@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="1024"
+   height="1024"
+   viewBox="0 0 270.9333 270.9333"
+   version="1.1"
+   id="svg3565"
+   inkscape:version="1.0.1 (3bc2e813f5, 2020-09-07)"
+   sodipodi:docname="шаблон.svg"
+   inkscape:export-filename="C:\Users\Kolobok\Desktop\проекты\Рыцарь\knightframes.png"
+   inkscape:export-xdpi="96.00001"
+   inkscape:export-ydpi="96.00001">
+  <title
+     id="title4661">Тайл размером 256x256</title>
+  <defs
+     id="defs3559" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.98994949"
+     inkscape:cx="46.86926"
+     inkscape:cy="45.776379"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     showgrid="true"
+     units="px"
+     width="256px"
+     inkscape:snap-global="false"
+     inkscape:document-rotation="0"
+     inkscape:window-width="1920"
+     inkscape:window-height="1017"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1">
+    <inkscape:grid
+       type="xygrid"
+       id="grid5244"
+       units="px"
+       spacingx="67.73332"
+       spacingy="67.73332"
+       empspacing="1" />
+    <inkscape:grid
+       type="xygrid"
+       id="grid8949"
+       color="#e33fff"
+       opacity="0.1254902"
+       empcolor="#e33fff"
+       empopacity="0.2509804"
+       units="px"
+       spacingx="33.86666"
+       spacingy="33.86666"
+       empspacing="8" />
+  </sodipodi:namedview>
+  <metadata
+     id="metadata3562">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title>Тайл размером 256x256</dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,-26.0667)">
+    <g
+       id="g1059"
+       transform="matrix(0.23786305,0,0,0.23786305,9.7244801,39.559749)">
+      <g
+         id="g1046">
+        <path
+           id="rect937"
+           style="fill:#ffffff;stroke:#000000;stroke-width:3.06501;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           d="m 61.001175,39.560375 c -16.123708,0 -29.104166,12.980458 -29.104166,29.104166 v 32.760279 c 0,16.1237 12.980458,29.10416 29.104166,29.10416 h 69.083135 11.87161 l 29.10417,14.43256 c -0.12523,-21.19423 0,-54.588206 0,-76.296999 0,-16.123708 -12.98046,-29.104166 -29.10417,-29.104166 z"
+           sodipodi:nodetypes="ssssccccss" />
+        <g
+           id="g1034"
+           transform="translate(-13.363476,-6.9490077)">
+          <g
+             id="g907-7"
+             transform="translate(-0.53145137,13.10789)">
+            <circle
+               style="fill:#000000;stroke:#000000;stroke-width:4.79346;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+               id="path832-7-7"
+               cx="70.643433"
+               cy="79.625725"
+               r="7.9802279" />
+          </g>
+          <g
+             id="g907-7-3"
+             transform="translate(28.839075,13.10789)">
+            <circle
+               style="fill:#000000;stroke:#000000;stroke-width:4.79346;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+               id="path832-7-7-0"
+               cx="70.643433"
+               cy="79.625725"
+               r="7.9802279" />
+          </g>
+          <g
+             id="g907-7-9"
+             transform="translate(58.209594,13.10789)">
+            <circle
+               style="fill:#000000;stroke:#000000;stroke-width:4.79346;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+               id="path832-7-7-9"
+               cx="70.643433"
+               cy="79.625725"
+               r="7.9802279" />
+          </g>
+          <g
+             id="g907-7-35"
+             transform="translate(87.580128,13.10789)">
+            <circle
+               style="fill:#000000;stroke:#000000;stroke-width:4.79346;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+               id="path832-7-7-2"
+               cx="70.643433"
+               cy="79.625725"
+               r="7.9802279" />
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>
