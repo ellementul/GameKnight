@@ -13,6 +13,10 @@ void ABaseEnemyCharacter::UpdateAnimState()
 	if (IsFall) {
 		SetAnimState(JumpState);
 	}
+
+	if (IsSpeak) {
+		SetAnimState(SpeakState);
+	}
 }
 
 bool ABaseEnemyCharacter::IsIdle()
