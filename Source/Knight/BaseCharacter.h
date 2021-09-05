@@ -111,6 +111,7 @@ protected:
 	APaperFlipbookActor* SpawnBullet(FVector RelativeLocation);
 
 	virtual void MoveTo(FVector Target, float Dist);
+	
 	virtual void Attack(FVector Target);
 
 	//Animation
@@ -175,6 +176,9 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category = Character)
 	void ActionAttack(FVector Target);
+
+	UFUNCTION(BlueprintCallable, Category = Character)
+	void RotateTo(float Direct);
 
 	void EndAttack();
 };

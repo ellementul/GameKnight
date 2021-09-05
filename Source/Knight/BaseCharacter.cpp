@@ -318,6 +318,21 @@ void ABaseCharacter::MoveTo(FVector Target, float Dist)
 	}
 }
 
+void ABaseCharacter::RotateTo(float Direct)
+{
+	if (Direct < 0.0f)
+	{
+		GetSprite()->SetRelativeRotation(FRotator(0.0, 180.0f, 0.0f));
+		IsLeftDirect = true;
+	}
+	else if (Direct > 0.0f)
+	{
+		GetSprite()->SetRelativeRotation(FRotator(0.0f, 0.0f, 0.0f));
+		IsLeftDirect = false;
+	}
+}
+
+
 APaperFlipbookActor* ABaseCharacter::SpawnBullet(FVector Location) {
 	UWorld* World = GetWorld();
 	UClass* SpawnClass = BulletClass.Get();
