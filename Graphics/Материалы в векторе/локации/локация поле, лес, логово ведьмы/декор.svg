@@ -14,7 +14,7 @@
    id="svg3565"
    inkscape:version="1.0.1 (3bc2e813f5, 2020-09-07)"
    sodipodi:docname="декор.svg"
-   inkscape:export-filename="C:\Users\Kolobok\Desktop\Projects\Knight\grass_tileset.png"
+   inkscape:export-filename="C:\Users\79519\Desktop\Knight\GameKnight\Graphics\Render_png\fields\decor.png"
    inkscape:export-xdpi="96"
    inkscape:export-ydpi="96">
   <title
@@ -28,9 +28,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.99999999"
-     inkscape:cx="184.57768"
-     inkscape:cy="99.093356"
+     inkscape:zoom="1.4142135"
+     inkscape:cx="259.23371"
+     inkscape:cy="251.81155"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="true"
@@ -112,7 +112,8 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(0,-26.0667)">
+     transform="translate(0,-26.0667)"
+     style="opacity:0.998">
     <g
        id="g1374"
        transform="translate(194.77089,-0.20608093)">
