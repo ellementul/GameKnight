@@ -14,7 +14,7 @@
    id="svg3565"
    inkscape:version="1.0.1 (3bc2e813f5, 2020-09-07)"
    sodipodi:docname="разбойник с мечем.svg"
-   inkscape:export-filename="C:\Users\Kolobok\Desktop\проекты\Рыцарь\knightframes.png"
+   inkscape:export-filename="C:\Users\79519\Desktop\Knight\GameKnight\Graphics\Render_png\wood\sword_rogue.png"
    inkscape:export-xdpi="96.00001"
    inkscape:export-ydpi="96.00001">
   <title
@@ -28,15 +28,15 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.24748737"
-     inkscape:cx="562.71701"
-     inkscape:cy="510.52344"
+     inkscape:zoom="0.69999999"
+     inkscape:cx="262.10552"
+     inkscape:cy="408.77734"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="true"
      units="px"
      width="256px"
-     inkscape:snap-global="false"
+     inkscape:snap-global="true"
      inkscape:document-rotation="0"
      inkscape:window-width="1920"
      inkscape:window-height="1017"
@@ -81,7 +81,7 @@
      transform="translate(0,-26.0667)">
     <g
        id="g1372"
-       transform="translate(-241.96635,170.27271)">
+       transform="translate(-241.42511,156.37043)">
       <g
          id="g1159">
         <path
@@ -98,7 +98,7 @@
     </g>
     <g
        id="g1324"
-       transform="translate(-86.981772,102.66778)">
+       transform="translate(-93.658407,102.71787)">
       <path
          class="fil15"
          d="m 131.09026,-24.882549 v 0 c -1.964,0 -3.571,1.606701 -3.571,3.570499 v 4.219702 c 0,1.9637 1.607,3.570499 3.571,3.570499 v 0 c 1.964,0 3.57,-1.606799 3.57,-3.570499 v -4.219702 c 0,-1.963798 -1.606,-3.570499 -3.57,-3.570499 z"
@@ -197,7 +197,7 @@
     </g>
     <g
        id="g1303"
-       transform="translate(172.93035,102.71573)">
+       transform="translate(166.51034,102.71787)">
       <path
          class="fil15"
          d="m 74.121256,-24.156749 v 0 c -1.964,0 -3.571,1.6067 -3.571,3.570501 v 4.2197 c 0,1.963801 1.607,3.570502 3.571,3.570502 v 0 c 1.964,0 3.57,-1.606701 3.57,-3.570502 v -4.2197 c 0,-1.963801 -1.606,-3.570501 -3.57,-3.570501 z"
@@ -296,7 +296,7 @@
     </g>
     <g
        id="g1282"
-       transform="translate(162.88007,102.76298)">
+       transform="translate(156.24585,102.76298)">
       <path
          class="fil15"
          d="m 16.652236,-24.882549 v 0 c -1.963,0 -3.57,1.606701 -3.57,3.570499 v 4.219702 c 0,1.9637 1.607,3.570499 3.57,3.570499 v 0 c 1.964,0 3.571,-1.606799 3.571,-3.570499 v -4.219702 c 0,-1.963798 -1.607,-3.570499 -3.571,-3.570499 z"
@@ -395,7 +395,7 @@
     </g>
     <g
        id="g1345"
-       transform="translate(-77.43533,102.7866)">
+       transform="translate(-84.136485,102.7866)">
       <path
          class="fil15"
          d="m 189.30126,-24.049249 v 0 c -1.96299,0 -3.56999,1.606701 -3.56999,3.570502 v 4.219699 c 0,1.963801 1.607,3.570499 3.56999,3.570499 v 0 c 1.96401,0 3.57101,-1.606698 3.57101,-3.570499 v -4.219699 c 0,-1.963801 -1.607,-3.570502 -3.57101,-3.570502 z"
@@ -494,7 +494,7 @@
     </g>
     <g
        id="g1261"
-       transform="translate(93.27807,238.125)">
+       transform="translate(222.13144,238.18451)">
       <path
          class="fil15"
          d="m -49.232777,-24.049249 v 0 c -1.96397,0 -3.57097,1.606701 -3.57097,3.570502 v 4.219699 c 0,1.963801 1.607,3.570499 3.57097,3.570499 v 0 c 1.96303,0 3.57003,-1.606698 3.57003,-3.570499 v -4.219699 c 0,-1.963801 -1.607,-3.570502 -3.57003,-3.570502 z"
@@ -607,7 +607,7 @@
     </g>
     <g
        id="g1237"
-       transform="translate(215.69423,238.125)">
+       transform="translate(218.11801,237.45546)">
       <path
          class="fil15"
          d="m -105.91878,-33.31785 v 0 c -1.38898,1.3886 -1.38898,3.660799 0,5.049401 l 2.984,2.983799 c 1.388,1.3886 3.660013,1.3886 5.049023,0 v 0 c 1.38898,-1.388599 1.38898,-3.660899 0,-5.049498 l -2.984003,-2.983802 c -1.388,-1.3886 -3.66101,-1.3886 -5.04902,0 z"
@@ -716,7 +716,7 @@
     </g>
     <g
        id="g1214"
-       transform="translate(337.02951,238.39227)">
+       transform="translate(204.84609,234.85979)">
       <path
          class="fil15"
          d="m -167.79178,-35.22855 v 0 c 0,1.9637 1.607,3.5705 3.57,3.5705 h 4.22 c 1.964,0 3.571,-1.6068 3.571,-3.5705 v 0 c 0,-1.9638 -1.607,-3.5705 -3.571,-3.5705 h -4.22 c -1.963,0 -3.57,1.6067 -3.57,3.5705 z"
