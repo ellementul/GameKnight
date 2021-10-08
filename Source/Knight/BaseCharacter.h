@@ -163,7 +163,7 @@ public:
 	float BoostRunning = 2;
 
 	UFUNCTION(BlueprintCallable, Category = HealthAndDamage)
-	void DamageCharacter(int Damage);
+	void DamageCharacter(int Damage, FVector LaunchImpulse = FVector(0, 0, 0) );
 
 	UFUNCTION(BlueprintCallable, Category = Character)
 	void ActionMoveTo(FVector Target, float Dist);

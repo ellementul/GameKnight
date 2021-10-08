@@ -45,7 +45,7 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Bullet)
 	float Speed;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = HealthAndDamage)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Bullet)
 	float LaunchForce = 1000;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Bullet)

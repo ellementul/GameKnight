@@ -28,7 +28,10 @@ bool ABaseEnemyCharacter::Damaged(int Damage)
 {
 	int OldHealth = Health;
 
-	Health -= Damage;
+	if (GetStatus() == CharacterStatus::Active)
+	{
+		Health -= Damage;
+	}
 
 	return (Health != OldHealth);
 }

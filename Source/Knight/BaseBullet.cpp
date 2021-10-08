@@ -48,8 +48,7 @@ void ABaseBullet::NotifyActorBeginOverlap(AActor * OtherActor)
 		ABaseEnemyCharacter* Target = Cast<ABaseEnemyCharacter>(OtherActor);
 
 		if (Target) {
-			Target->DamageCharacter(DamagePoint);
-			Target->LaunchCharacter(LaunchImpulse, false, false);
+			Target->DamageCharacter(DamagePoint, LaunchImpulse);
 		}
 
 		return;
@@ -61,8 +60,7 @@ void ABaseBullet::NotifyActorBeginOverlap(AActor * OtherActor)
 		AKnightCharacter* Target = Cast<AKnightCharacter>(OtherActor);
 
 		if (Target) {
-			Target->DamageCharacter(DamagePoint);
-			Target->LaunchCharacter(LaunchImpulse, false, false);
+			Target->DamageCharacter(DamagePoint, LaunchImpulse);
 		}
 
 		return;

@@ -118,7 +118,7 @@ int ABaseCharacter::GetHealth()
 	return Health;
 }
 
-void ABaseCharacter::DamageCharacter(int Damage)
+void ABaseCharacter::DamageCharacter(int Damage, FVector LaunchImpulse)
 {
 	if (Damage < 0)
 		Damage = 0;
@@ -128,6 +128,7 @@ void ABaseCharacter::DamageCharacter(int Damage)
 
 	if (Damaged(Damage))
 	{
+		LaunchCharacter(LaunchImpulse, false, false);
 		OnHurted();
 
 		if (Health <= 0)
