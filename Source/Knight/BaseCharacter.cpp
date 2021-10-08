@@ -239,6 +239,9 @@ void ABaseCharacter::UpdateAnimation()
 
 		if(IsIdle())
 			SetAnimState(IdleState);
+		
+		if (IsAttack)
+			SetAnimState(AttackState);
 	}
 }
 
@@ -360,7 +363,9 @@ void ABaseCharacter::ActionMoveTo(FVector Target, float Dist)
 
 void ABaseCharacter::ActionAttack(FVector Target = FVector::ZeroVector)
 {
+	IsAttack = true;
 	Attack(Target);
+	GetWorldTimerManager().SetTimer(AttackTimerHandle, this, &ABaseCharacter::EndAttack, AttackAnimTimer);
 }
 
 void ABaseCharacter::EndAttack()

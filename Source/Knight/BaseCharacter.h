@@ -93,9 +93,13 @@ protected:
 	int Health    = 0;
 
 	FTimerHandle HurtTimerHandle;
+	FTimerHandle AttackTimerHandle;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = HealthAndDamage)
 	float HurtTimer;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Animations)
+	float AttackAnimTimer;
 
 	UFUNCTION(BlueprintCallable, Category = HealthAndDamage)
 	int GetHealth();
@@ -135,6 +139,8 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Animations)
 	FAnimState KillState;
 	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Animations)
+	FAnimState AttackState;
 
 	/** Called for side to side input */
 	void MoveRight(float Value);
