@@ -40,9 +40,9 @@
      inkscape:document-rotation="0"
      inkscape:window-width="1920"
      inkscape:window-height="1017"
-     inkscape:window-x="-8"
-     inkscape:window-y="-8"
-     inkscape:window-maximized="1">
+     inkscape:window-x="-32000"
+     inkscape:window-y="-32000"
+     inkscape:window-maximized="0">
     <inkscape:grid
        type="xygrid"
        id="grid5244"
@@ -531,7 +531,7 @@
     </g>
     <g
        id="g1331"
-       transform="translate(91.465978,273.59189)">
+       transform="translate(-44.000669,273.59189)">
       <path
          class="fil10"
          d="m 64.278148,-70.278325 c 2.33202,1.8089 5.949,1.4735 6.92902,0.1001 l 3.538987,-4.9587 c 0.98001,-1.3734 -0.37399,-4.283601 -3.366007,-5.094201 -16.25698,-4.4045 -18.665,0.985401 -7.102,9.952801 z"
@@ -769,7 +769,7 @@
     </g>
     <g
        id="g1381"
-       transform="translate(56.962887,270.29095)">
+       transform="translate(192.42952,270.29097)">
       <path
          class="fil10"
          d="m -30.313852,-48.390223 c 1.80901,-2.3325 1.47399,-5.949201 0.10001,-6.929199 l -4.958,-3.538401 c -1.37401,-0.98 -4.284,0.3735 -5.095,3.365501 -4.40402,16.257402 0.98599,18.664801 9.95299,7.102099 z"
