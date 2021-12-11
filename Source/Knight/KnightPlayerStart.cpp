@@ -18,11 +18,11 @@ void AKnightPlayerStart::NotifyActorBeginOverlap(AActor * OtherActor)
 	if (Knight) {
 		UWorld* World = GetWorld();
 
-		AKnightGameMode* GameMode = Cast<AKnightGameMode>( World->GetAuthGameMode() );
+		UKnightGameInstance* GI = Cast<UKnightGameInstance>( World->GetGameInstance() );
 
-		if (GameMode)
+		if (GI)
 		{
-			GameMode->SetStartPlayerTag(PlayerStartTag.ToString());
+			GI->SetStartPlayerTag(PlayerStartTag.ToString());
 		}
 	}
 }

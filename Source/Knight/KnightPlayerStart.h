@@ -6,7 +6,7 @@
 #include "GameFramework/PlayerStart.h"
 #include "PaperSpriteComponent.h"
 #include "KnightCharacter.h"
-#include "KnightGameMode.h"
+#include "KnightGameInstance.h"
 #include "KnightPlayerStart.generated.h"
 
 class AKnightCharacter;
