@@ -33,24 +33,18 @@ void AKnightGameMode::ReSpawnCharacter(AActor* DestroyedActor)
 	PlayerPawn->OnDestroyed.AddDynamic(this, &AKnightGameMode::ReSpawnCharacter);
 }
 
-void AKnightGameMode::SetStartPlayerTag(FString StartPlayerTag)
-{
-	if (!StartPlayerTag.IsEmpty())
-	{
-		CurrentStartPlayerTag = StartPlayerTag;
-	}
-	else
-	{
-		UE_LOG(LogTemp, Error, TEXT("AKnightGameMode::SetStartPlayerTag: Tag is empty!"));
-	}
-}
-
 AActor* AKnightGameMode::FindPlayerStart_Implementation(AController* Player, const FString& IncomingName)
 {
+	UWorld* World = GetWorld();
 
-	if (!CurrentStartPlayerTag.IsEmpty())
+	UKnightGameInstance* GI = Cast<UKnightGameInstance>(World->GetGameInstance());
+
+	if (GI)
 	{
-		return Super::FindPlayerStart_Implementation(Player, CurrentStartPlayerTag);
+		if (!GI->CurrentStartPlayerTag.IsEmpty())
+		{
+			return Super::FindPlayerStart_Implementation(Player, GI->CurrentStartPlayerTag);
+		}
 	}
 
 	return Super::FindPlayerStart_Implementation(Player, IncomingName);

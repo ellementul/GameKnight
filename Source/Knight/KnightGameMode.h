@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/GameModeBase.h"
+#include "KnightGameInstance.h"
 #include "KnightGameMode.generated.h"
 
 /**
@@ -21,16 +22,10 @@ public:
 
 	virtual AActor* FindPlayerStart_Implementation(AController* Player, const FString& IncomingName) override;
 
-	UFUNCTION()
-	void SetStartPlayerTag(FString StartPlayerTag);
-
 protected:
 
 	virtual void BeginPlay() override;
 
 	UFUNCTION()
 	void ReSpawnCharacter(AActor* DestroyedActor);
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = PlayerStart)
-	FString CurrentStartPlayerTag;
 };
